@@ -17,16 +17,23 @@
 @end
 
 @implementation VideoDetailController
+{
+    VideoPreviewCell* cell000;
+}
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    cell000=[[VideoPreviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];
+    cell000.video=self.video;
+    
     self.page=0;
     self.title=@"";
-    self.tableView.rowHeight=90;
+    self.tableView.rowHeight=UITableViewAutomaticDimension;
+    self.tableView.estimatedRowHeight=90;
     self.url=[ApiTool videoRelatedJSON:self.video.id_];
     [self.refreshControl removeFromSuperview];
-    
 //    [self.navigationController setNavigationBarHidden:YES];
 }
 
@@ -56,10 +63,20 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-//        UITableViewCell* cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
-//        [cell layoutIfNeeded];
-//        return [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-        return 500;
+        if([[[UIDevice currentDevice]systemVersion]floatValue]>=8)
+            return UITableViewAutomaticDimension;
+        else
+        {
+            
+        }
+//        cell00.video=self.video;
+//        return [cell00.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        
+        UITableViewCell* cell=cell000;
+        CGFloat hei=[cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
+        NSLog(@"hei:%f",hei);
+        return hei;
+//        return 500;
     }
     else
     {

@@ -27,6 +27,8 @@
     if (self) {
         UIColor* grayColor=[UIColor colorWithWhite:0.7 alpha:1];
         
+        CGFloat textLabelPreferredMaxWidth=[[UIScreen mainScreen]bounds].size.width-20;
+        
         imageView=[[UIImageView alloc]init];
         imageView.contentMode=UIViewContentModeScaleAspectFill;
         [self.contentView addSubview:imageView];
@@ -53,14 +55,15 @@
         
         titleLabel=[[UILabel alloc]init];
         titleLabel.textAlignment=NSTextAlignmentLeft;
-        titleLabel.numberOfLines=0;
+        titleLabel.numberOfLines=2;
         titleLabel.font=[UIFont systemFontOfSize:16];
         titleLabel.textColor=[UIColor blackColor];
+        titleLabel.preferredMaxLayoutWidth=textLabelPreferredMaxWidth;
         [self.contentView addSubview:titleLabel];
         
         cateTimeLabel=[[UILabel alloc]init];
         cateTimeLabel.textAlignment=NSTextAlignmentLeft;
-        cateTimeLabel.numberOfLines=0;
+        cateTimeLabel.numberOfLines=1;
         cateTimeLabel.font=[UIFont systemFontOfSize:12];
         cateTimeLabel.textColor=grayColor;
         [self.contentView addSubview:cateTimeLabel];
@@ -70,6 +73,9 @@
         descLabel.numberOfLines=0;
         descLabel.font=[UIFont systemFontOfSize:12];
         descLabel.textColor=grayColor;
+        ///what the hell? 添加了这句之后，在iOS7上就完美了！！
+        descLabel.preferredMaxLayoutWidth=textLabelPreferredMaxWidth;
+        //what the hell!
         [self.contentView addSubview:descLabel];
         
         UIEdgeInsets in10=UIEdgeInsetsMake(10, 14, 10, 14);
@@ -96,18 +102,18 @@
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).insets(in10);
             make.top.equalTo(imageView.mas_bottom).offset(10);
+//            make.height.equalTo(@(16));
         }];
         
         [cateTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).insets(in10);
             make.top.equalTo(titleLabel.mas_bottom).offset(10);
-//            make.height.greaterThanOrEqualTo(@(20));
+//            make.height.equalTo(@(12));
         }];
         
         [descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.equalTo(self.contentView).insets(in10);
             make.top.equalTo(cateTimeLabel.mas_bottom).offset(10);
-//            make.height.greaterThanOrEqualTo(@(20));
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         }];
     }
@@ -136,7 +142,7 @@
     cateTimeLabel.text=detail;
     
     descLabel.text=video.desc;
-    NSLog(@"%@",video.desc);
+//    NSLog(@"\n%@\n",video.desc);
 }
 
 -(void)playPressed

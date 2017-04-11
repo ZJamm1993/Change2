@@ -68,13 +68,13 @@
     [_params setValue:[NSNumber numberWithInteger:1] forKey:MY_PAGE_KEY];
     [_params setValue:[NSNumber numberWithInteger:_per_page] forKey:MY_PER_PAGE_KEY];
     [HttpTool get:_url params:_usingPage?[NSDictionary dictionaryWithDictionary:_params]:nil success:^(id responseObject) {
-        NSLog(@"%@",responseObject);
+//        NSLog(@"%@",responseObject);
         _page=1;
         [self didRefreshWithDictionary:responseObject];
         [_tableView reloadData];
         [_refreshControl endRefreshing];
     } failure:^(NSError *error) {
-        NSLog(@"%@",error.description);
+//        NSLog(@"%@",error.description);
     }];
 }
 
