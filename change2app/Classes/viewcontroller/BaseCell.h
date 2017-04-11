@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  BaseCell.h
 //  change2app
 //
 //  Created by jam on 17/4/11.
@@ -7,9 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "VideoObject.h"
 
-@interface ViewController : UIViewController
+@interface BaseCell : UITableViewCell
 
+@property (nonatomic,strong) VideoObject* video;
 
 @end
-
