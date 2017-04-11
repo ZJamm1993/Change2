@@ -94,20 +94,20 @@
         }];
         
         [titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).insets(in10).priority(997);
-            make.top.equalTo(imageView.mas_bottom).offset(10).priority(997);
+            make.left.right.equalTo(self.contentView).insets(in10);
+            make.top.equalTo(imageView.mas_bottom).offset(10);
         }];
         
         [cateTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).insets(in10).priority(998);
-            make.top.equalTo(titleLabel.mas_bottom).offset(10).priority(998);
-//            make.height.greaterThanOrEqualTo(@(20)).priority(999);
+            make.left.right.equalTo(self.contentView).insets(in10);
+            make.top.equalTo(titleLabel.mas_bottom).offset(10);
+//            make.height.greaterThanOrEqualTo(@(20));
         }];
         
         [descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).insets(in10).priority(999);
-            make.top.equalTo(cateTimeLabel.mas_bottom).offset(10).priority(999);
-//            make.height.greaterThanOrEqualTo(@(20)).priority(999);
+            make.left.right.equalTo(self.contentView).insets(in10);
+            make.top.equalTo(cateTimeLabel.mas_bottom).offset(10);
+//            make.height.greaterThanOrEqualTo(@(20));
             make.bottom.equalTo(self.contentView.mas_bottom).offset(-10);
         }];
     }

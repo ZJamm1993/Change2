@@ -56,10 +56,10 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        UITableViewCell* cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
-        [cell layoutIfNeeded];
-        return [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-//        return 500;
+//        UITableViewCell* cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
+//        [cell layoutIfNeeded];
+//        return [cell systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        return 500;
     }
     else
     {
