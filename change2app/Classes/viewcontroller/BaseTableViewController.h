@@ -23,10 +23,14 @@
 @property (nonatomic,strong) NSMutableArray* dataSource;
 @property (nonatomic,strong) UITableView* tableView;
 @property (nonatomic,strong) UIRefreshControl* refreshControl;
+@property (nonatomic,strong) NSString* cacheKey;
 
 -(void)refreshNew;
 -(void)loadMore;
 -(void)didRefreshWithDictionary:(NSDictionary*)dictionary;
 -(void)didLoadMoreWithDictionary:(NSDictionary*)dictionary;
+-(BOOL)shouldSaveCache;
+-(void)saveCacheWithDictionary:(NSDictionary*)dictionary;
+-(void)loadWithCache;
 
 @end

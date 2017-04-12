@@ -18,6 +18,7 @@
 
 @implementation BaseTableViewController
 {
+    
 }
 
 -(instancetype)init
@@ -33,8 +34,12 @@
 {
     [super viewDidLoad];
     
+    self.view.backgroundColor=[UIColor whiteColor];
+    
     _usingPage=YES;
-    _url=[ApiTool videoJSON];
+    if (_url.length==0) {
+        _url=[ApiTool videoJSON];
+    }
     _page=1;
     _per_page=20;
     
@@ -45,6 +50,7 @@
     _tableView.rowHeight=160;
     _tableView.dataSource=self;
     _tableView.delegate=self;
+    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     [self.view addSubview:_tableView];
     [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.top.bottom.equalTo(self.view);
@@ -59,6 +65,9 @@
 {
     [super viewWillAppear:animated];
     if (_dataSource.count==0) {
+        [self loadWithCache];
+    }
+    if (_dataSource.count==0) {
         [self refreshNew];
     }
 }
@@ -71,10 +80,12 @@
 //        NSLog(@"%@",responseObject);
         _page=1;
         [self didRefreshWithDictionary:responseObject];
+        [self saveCacheWithDictionary:responseObject];
         [_tableView reloadData];
         [_refreshControl endRefreshing];
     } failure:^(NSError *error) {
-//        NSLog(@"%@",error.description);
+        //        NSLog(@"%@",error.description);
+        [_refreshControl endRefreshing];
     }];
 }
 
@@ -85,9 +96,14 @@
         [_params setValue:[NSNumber numberWithInteger:_per_page] forKey:MY_PER_PAGE_KEY];
         [HttpTool get:_url params:_usingPage?[NSDictionary dictionaryWithDictionary:_params]:nil success:^(id responseObject) {
 //            NSLog(@"%@",responseObject);
-            _page++;
+            NSInteger oldCount=self.dataSource.count;
             [self didLoadMoreWithDictionary:responseObject];
-            [_tableView reloadData];
+            NSInteger newCount=self.dataSource.count;
+            if (newCount>oldCount) {
+                NSLog(@"loaded page: %ld",(long)_page);
+                _page++;
+                [_tableView reloadData];
+            }
         } failure:^(NSError *error) {
 //            NSLog(@"%@",error.description);
         }];
@@ -114,6 +130,47 @@
     }
 }
 
+-(BOOL)shouldSaveCache
+{
+    return self.cacheKey.length>0;
+}
+
+-(void)saveCacheWithDictionary:(NSDictionary *)dictionary
+{
+    if ([self shouldSaveCache]) {
+        if (self.cacheKey.length>0) {
+            if ([dictionary isKindOfClass:[NSDictionary class]]) {
+                if (dictionary.count>0) {
+                    NSData* data=[NSJSONSerialization dataWithJSONObject:dictionary options:NSJSONWritingPrettyPrinted error:nil];
+                    if ([data isKindOfClass:[NSData class]]) {
+                        if (data.length>0) {
+                            [[NSUserDefaults standardUserDefaults]setValue:data forKey:self.cacheKey];
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+-(void)loadWithCache
+{
+    if (self.cacheKey.length>0) {
+        NSData* data=[[NSUserDefaults standardUserDefaults]valueForKey:self.cacheKey];
+        if ([data isKindOfClass:[NSData class]]) {
+            if (data.length>0) {
+                NSDictionary* cache=[NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+                if ([cache isKindOfClass:[NSDictionary class]]) {
+                    if (cache.count>0) {
+                        [self didLoadMoreWithDictionary:cache];
+                        [self.tableView reloadData];
+                    }
+                }
+            }
+        }
+    }
+}
+
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
     return _dataSource.count;
@@ -126,7 +183,7 @@
     if (cell==nil) {
         cell=[[BaseCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idd];
     }
-    VideoObject* video=[_dataSource objectAtIndex:indexPath.row];
+    VideoObject* video=[self.dataSource objectAtIndex:indexPath.row];
     cell.video=video;
     return cell;
 }

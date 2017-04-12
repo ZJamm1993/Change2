@@ -10,7 +10,6 @@
 		395D61981E9C68EC00013F22 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D61971E9C68EC00013F22 /* main.m */; };
 		395D619B1E9C68EC00013F22 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D619A1E9C68EC00013F22 /* AppDelegate.m */; };
 		395D61A31E9C68EC00013F22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395D61A21E9C68EC00013F22 /* Assets.xcassets */; };
-		395D61A61E9C68EC00013F22 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 395D61A41E9C68EC00013F22 /* LaunchScreen.storyboard */; };
 		395D61B31E9C6A7000013F22 /* VideoObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D61B21E9C6A7000013F22 /* VideoObject.m */; };
 		395D61B61E9C6ACD00013F22 /* CategoryObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D61B51E9C6ACD00013F22 /* CategoryObject.m */; };
 		395D61B91E9C6AE300013F22 /* ChannelObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D61B81E9C6AE300013F22 /* ChannelObject.m */; };
@@ -60,7 +59,12 @@
 		395D62461E9C92F800013F22 /* UIView+WebCacheOperation.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D62361E9C92F800013F22 /* UIView+WebCacheOperation.m */; };
 		395D62491E9CA2D500013F22 /* VideoDetailController.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D62481E9CA2D500013F22 /* VideoDetailController.m */; };
 		395D624C1E9CA65A00013F22 /* SmallCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D624B1E9CA65A00013F22 /* SmallCell.m */; };
-		397A1B8B1E9CB29900B01BBB /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 397A1B8A1E9CB29900B01BBB /* Default-568h@2x.png */; };
+		3963D81D1E9DE3D30044BC1A /* SearchPageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D81C1E9DE3D30044BC1A /* SearchPageController.m */; };
+		3963D8271E9E237B0044BC1A /* ProfilePageController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D8261E9E237B0044BC1A /* ProfilePageController.m */; };
+		3963D82A1E9E28910044BC1A /* CollectionController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D8291E9E28910044BC1A /* CollectionController.m */; };
+		3963D82D1E9E29BD0044BC1A /* DownloadedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D82C1E9E29BD0044BC1A /* DownloadedController.m */; };
+		3963D8301E9E2B2F0044BC1A /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D82F1E9E2B2F0044BC1A /* SettingController.m */; };
+		3963D8331E9E2CB50044BC1A /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D8321E9E2CB50044BC1A /* FileTool.m */; };
 		39B818991E9CBA6E00507CA7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B818981E9CBA6E00507CA7 /* MediaPlayer.framework */; };
 		39B8189D1E9CBAA500507CA7 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B8189C1E9CBAA500507CA7 /* PlayerController.m */; };
 		39B818A31E9CC20C00507CA7 /* VideoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B818A21E9CC20C00507CA7 /* VideoPreviewCell.m */; };
@@ -72,7 +76,6 @@
 		395D61991E9C68EC00013F22 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		395D619A1E9C68EC00013F22 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		395D61A21E9C68EC00013F22 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		395D61A51E9C68EC00013F22 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		395D61A71E9C68EC00013F22 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		395D61B11E9C6A7000013F22 /* VideoObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoObject.h; sourceTree = "<group>"; };
 		395D61B21E9C6A7000013F22 /* VideoObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoObject.m; sourceTree = "<group>"; };
@@ -177,7 +180,18 @@
 		395D62481E9CA2D500013F22 /* VideoDetailController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoDetailController.m; sourceTree = "<group>"; };
 		395D624A1E9CA65A00013F22 /* SmallCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SmallCell.h; sourceTree = "<group>"; };
 		395D624B1E9CA65A00013F22 /* SmallCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SmallCell.m; sourceTree = "<group>"; };
-		397A1B8A1E9CB29900B01BBB /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		3963D81B1E9DE3D30044BC1A /* SearchPageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchPageController.h; sourceTree = "<group>"; };
+		3963D81C1E9DE3D30044BC1A /* SearchPageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchPageController.m; sourceTree = "<group>"; };
+		3963D8251E9E237B0044BC1A /* ProfilePageController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ProfilePageController.h; sourceTree = "<group>"; };
+		3963D8261E9E237B0044BC1A /* ProfilePageController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ProfilePageController.m; sourceTree = "<group>"; };
+		3963D8281E9E28910044BC1A /* CollectionController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionController.h; sourceTree = "<group>"; };
+		3963D8291E9E28910044BC1A /* CollectionController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionController.m; sourceTree = "<group>"; };
+		3963D82B1E9E29BD0044BC1A /* DownloadedController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownloadedController.h; sourceTree = "<group>"; };
+		3963D82C1E9E29BD0044BC1A /* DownloadedController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownloadedController.m; sourceTree = "<group>"; };
+		3963D82E1E9E2B2F0044BC1A /* SettingController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SettingController.h; sourceTree = "<group>"; };
+		3963D82F1E9E2B2F0044BC1A /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
+		3963D8311E9E2CB50044BC1A /* FileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
+		3963D8321E9E2CB50044BC1A /* FileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
 		39B818981E9CBA6E00507CA7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		39B8189B1E9CBAA500507CA7 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		39B8189C1E9CBAA500507CA7 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
@@ -201,7 +215,6 @@
 			isa = PBXGroup;
 			children = (
 				39B818981E9CBA6E00507CA7 /* MediaPlayer.framework */,
-				397A1B8A1E9CB29900B01BBB /* Default-568h@2x.png */,
 				395D61951E9C68EC00013F22 /* change2app */,
 				395D61941E9C68EC00013F22 /* Products */,
 			);
@@ -222,7 +235,6 @@
 				395D61991E9C68EC00013F22 /* AppDelegate.h */,
 				395D619A1E9C68EC00013F22 /* AppDelegate.m */,
 				395D61A21E9C68EC00013F22 /* Assets.xcassets */,
-				395D61A41E9C68EC00013F22 /* LaunchScreen.storyboard */,
 				395D61A71E9C68EC00013F22 /* Info.plist */,
 				395D61961E9C68EC00013F22 /* Supporting Files */,
 			);
@@ -268,14 +280,14 @@
 				395D61D31E9C769B00013F22 /* TabbarController.m */,
 				395D61D51E9C76D700013F22 /* NaviController.h */,
 				395D61D61E9C76D700013F22 /* NaviController.m */,
+				395D61E11E9C77B000013F22 /* BaseTableViewController.h */,
+				395D61E21E9C77B000013F22 /* BaseTableViewController.m */,
 				395D61D81E9C76FB00013F22 /* HomePageController.h */,
 				395D61D91E9C76FB00013F22 /* HomePageController.m */,
 				395D61DB1E9C771A00013F22 /* CategoryPageController.h */,
 				395D61DC1E9C771A00013F22 /* CategoryPageController.m */,
 				395D61DE1E9C772B00013F22 /* RankingPageController.h */,
 				395D61DF1E9C772B00013F22 /* RankingPageController.m */,
-				395D61E11E9C77B000013F22 /* BaseTableViewController.h */,
-				395D61E21E9C77B000013F22 /* BaseTableViewController.m */,
 				395D620F1E9C83B000013F22 /* BaseCell.h */,
 				395D62101E9C83B000013F22 /* BaseCell.m */,
 				395D62471E9CA2D500013F22 /* VideoDetailController.h */,
@@ -286,6 +298,16 @@
 				39B818A21E9CC20C00507CA7 /* VideoPreviewCell.m */,
 				39B8189B1E9CBAA500507CA7 /* PlayerController.h */,
 				39B8189C1E9CBAA500507CA7 /* PlayerController.m */,
+				3963D81B1E9DE3D30044BC1A /* SearchPageController.h */,
+				3963D81C1E9DE3D30044BC1A /* SearchPageController.m */,
+				3963D8251E9E237B0044BC1A /* ProfilePageController.h */,
+				3963D8261E9E237B0044BC1A /* ProfilePageController.m */,
+				3963D8281E9E28910044BC1A /* CollectionController.h */,
+				3963D8291E9E28910044BC1A /* CollectionController.m */,
+				3963D82B1E9E29BD0044BC1A /* DownloadedController.h */,
+				3963D82C1E9E29BD0044BC1A /* DownloadedController.m */,
+				3963D82E1E9E2B2F0044BC1A /* SettingController.h */,
+				3963D82F1E9E2B2F0044BC1A /* SettingController.m */,
 			);
 			path = viewcontroller;
 			sourceTree = "<group>";
@@ -299,6 +321,8 @@
 				395D61E51E9C781500013F22 /* HttpTool.m */,
 				395D62121E9C8BE100013F22 /* NSDate+StringFormater.h */,
 				395D62131E9C8BE100013F22 /* NSDate+StringFormater.m */,
+				3963D8311E9E2CB50044BC1A /* FileTool.h */,
+				3963D8321E9E2CB50044BC1A /* FileTool.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -464,8 +488,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				395D61A61E9C68EC00013F22 /* LaunchScreen.storyboard in Resources */,
-				397A1B8B1E9CB29900B01BBB /* Default-568h@2x.png in Resources */,
 				395D61A31E9C68EC00013F22 /* Assets.xcassets in Resources */,
 				395D62021E9C7A5D00013F22 /* Info.plist in Resources */,
 			);
@@ -493,12 +515,14 @@
 				395D62071E9C7A5D00013F22 /* MASViewAttribute.m in Sources */,
 				395D62041E9C7A5D00013F22 /* MASConstraint.m in Sources */,
 				395D61CD1E9C762400013F22 /* AFNetworkReachabilityManager.m in Sources */,
+				3963D81D1E9DE3D30044BC1A /* SearchPageController.m in Sources */,
 				395D62411E9C92F800013F22 /* UIImage+GIF.m in Sources */,
 				39B8189D1E9CBAA500507CA7 /* PlayerController.m in Sources */,
 				395D623F1E9C92F800013F22 /* SDWebImagePrefetcher.m in Sources */,
 				395D619B1E9C68EC00013F22 /* AppDelegate.m in Sources */,
 				395D61B31E9C6A7000013F22 /* VideoObject.m in Sources */,
 				395D620E1E9C7F9000013F22 /* Foundation+Log.m in Sources */,
+				3963D8301E9E2B2F0044BC1A /* SettingController.m in Sources */,
 				395D623A1E9C92F800013F22 /* SDWebImageCompat.m in Sources */,
 				395D623C1E9C92F800013F22 /* SDWebImageDownloader.m in Sources */,
 				395D623D1E9C92F800013F22 /* SDWebImageDownloaderOperation.m in Sources */,
@@ -507,11 +531,14 @@
 				395D620A1E9C7A5D00013F22 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				395D62051E9C7A5D00013F22 /* MASConstraintMaker.m in Sources */,
 				395D61BC1E9C72C600013F22 /* ApiTool.m in Sources */,
+				3963D8331E9E2CB50044BC1A /* FileTool.m in Sources */,
+				3963D8271E9E237B0044BC1A /* ProfilePageController.m in Sources */,
 				395D61D71E9C76D700013F22 /* NaviController.m in Sources */,
 				395D62061E9C7A5D00013F22 /* MASLayoutConstraint.m in Sources */,
 				395D62461E9C92F800013F22 /* UIView+WebCacheOperation.m in Sources */,
 				395D61D41E9C769B00013F22 /* TabbarController.m in Sources */,
 				395D62141E9C8BE100013F22 /* NSDate+StringFormater.m in Sources */,
+				3963D82A1E9E28910044BC1A /* CollectionController.m in Sources */,
 				395D62081E9C7A5D00013F22 /* MASViewConstraint.m in Sources */,
 				395D61E31E9C77B000013F22 /* BaseTableViewController.m in Sources */,
 				395D61E61E9C781500013F22 /* HttpTool.m in Sources */,
@@ -521,6 +548,7 @@
 				395D620B1E9C7A5D00013F22 /* View+MASAdditions.m in Sources */,
 				395D61CE1E9C762400013F22 /* AFSecurityPolicy.m in Sources */,
 				395D62381E9C92F800013F22 /* NSData+ImageContentType.m in Sources */,
+				3963D82D1E9E29BD0044BC1A /* DownloadedController.m in Sources */,
 				395D61CF1E9C762400013F22 /* AFURLRequestSerialization.m in Sources */,
 				395D62431E9C92F800013F22 /* UIImage+WebP.m in Sources */,
 				395D61B61E9C6ACD00013F22 /* CategoryObject.m in Sources */,
@@ -534,17 +562,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		395D61A41E9C68EC00013F22 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				395D61A51E9C68EC00013F22 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		395D61A81E9C68EC00013F22 /* Debug */ = {
@@ -631,6 +648,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = change2app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -644,6 +662,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				GCC_INPUT_FILETYPE = automatic;
 				INFOPLIST_FILE = change2app/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;

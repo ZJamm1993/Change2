@@ -10,10 +10,20 @@
 
 @implementation NaviController
 
+-(void)viewDidLoad
+{
+    [super viewDidLoad];
+    self.navigationBar.tintColor=[UIColor grayColor];
+}
+
 -(void)pushViewController:(UIViewController *)viewController animated:(BOOL)animated
 {
     if (self.viewControllers.count!=0) {
         viewController.hidesBottomBarWhenPushed=YES;
+    }
+    else
+    {
+        
     }
     [super pushViewController:viewController animated:animated];
 }

@@ -12,6 +12,7 @@
 @protocol VideoPreviewDelegate <NSObject>
 
 -(void)videoPreviewShouldPlayVideo;
+-(void)videoPreviewShouldReloadHeight;
 
 @end
 
@@ -19,5 +20,6 @@
 
 @property (nonatomic,weak) id<VideoPreviewDelegate> delegate;
 @property (nonatomic,strong) VideoObject* video;
+@property (nonatomic,assign) NSInteger descriptionNumberOfLines;
 
 @end

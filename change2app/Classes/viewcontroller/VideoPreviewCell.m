@@ -18,6 +18,7 @@
     UILabel* durationLabel;
     UILabel* titleLabel;
     UILabel* cateTimeLabel;
+    UIButton* moreButton;
     UILabel* descLabel;
 }
 
@@ -25,7 +26,7 @@
 {
     self=[super initWithStyle:style reuseIdentifier:reuseIdentifier];
     if (self) {
-        UIColor* grayColor=[UIColor colorWithWhite:0.7 alpha:1];
+        UIColor* grayColor=[UIColor colorWithWhite:0.6 alpha:1];
         
         CGFloat textLabelPreferredMaxWidth=[[UIScreen mainScreen]bounds].size.width-20;
         
@@ -61,6 +62,15 @@
         titleLabel.preferredMaxLayoutWidth=textLabelPreferredMaxWidth;
         [self.contentView addSubview:titleLabel];
         
+        moreButton=[[UIButton alloc]init];
+        [moreButton setTitle:@"☞" forState:UIControlStateNormal];
+        moreButton.transform=CGAffineTransformMakeRotation(M_PI/2);
+        [moreButton setTitleColor:grayColor forState:UIControlStateNormal];
+        [moreButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+        [[moreButton titleLabel]setFont:[UIFont systemFontOfSize:24]];
+        [moreButton addTarget:self action:@selector(morePressed) forControlEvents:UIControlEventTouchUpInside];
+        [self.contentView addSubview:moreButton];
+        
         cateTimeLabel=[[UILabel alloc]init];
         cateTimeLabel.textAlignment=NSTextAlignmentLeft;
         cateTimeLabel.numberOfLines=1;
@@ -70,10 +80,11 @@
         
         descLabel=[[UILabel alloc]init];
         descLabel.textAlignment=NSTextAlignmentLeft;
-        descLabel.numberOfLines=0;
+        descLabel.numberOfLines=self.descriptionNumberOfLines;
         descLabel.font=[UIFont systemFontOfSize:12];
         descLabel.textColor=grayColor;
-        ///what the hell? 添加了这句之后，在iOS7上就完美了！！
+//        descLabel.lineBreakMode=NSLineBreakByClipping;
+        ///what the hell? 添加了这句之后，在iOS7上就可以了??
         descLabel.preferredMaxLayoutWidth=textLabelPreferredMaxWidth;
         //what the hell!
         [self.contentView addSubview:descLabel];
@@ -105,9 +116,16 @@
 //            make.height.equalTo(@(16));
         }];
         
+        [moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.width.height.equalTo(@(36));
+            make.centerY.equalTo(cateTimeLabel.mas_centerY);
+            make.right.equalTo(self.contentView.mas_right).offset(-10);
+        }];
+        
         [cateTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.left.right.equalTo(self.contentView).insets(in10);
+            make.left.equalTo(self.contentView).insets(in10);
             make.top.equalTo(titleLabel.mas_bottom).offset(10);
+            make.right.equalTo(moreButton.mas_left).offset(-10);
 //            make.height.equalTo(@(12));
         }];
         
@@ -118,6 +136,18 @@
         }];
     }
     return self;
+}
+
+-(void)setDescriptionNumberOfLines:(NSInteger)descriptionNumberOfLines
+{
+    _descriptionNumberOfLines=descriptionNumberOfLines;
+    descLabel.numberOfLines=_descriptionNumberOfLines;
+    
+    CGFloat rotation=M_PI/2*(_descriptionNumberOfLines==0?1:-1);
+    moreButton.transform=CGAffineTransformMakeRotation(rotation);
+    [UIView animateWithDuration:0.25 animations:^{
+        moreButton.transform=CGAffineTransformMakeRotation(-rotation);
+    }];
 }
 
 -(void)setVideo:(VideoObject *)video
@@ -149,6 +179,13 @@
 {
     if ([self.delegate respondsToSelector:@selector(videoPreviewShouldPlayVideo)]) {
         [self.delegate videoPreviewShouldPlayVideo];
+    }
+}
+
+-(void)morePressed
+{
+    if ([self.delegate respondsToSelector:@selector(videoPreviewShouldReloadHeight)]) {
+        [self.delegate videoPreviewShouldReloadHeight];
     }
 }
 

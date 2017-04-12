@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "BaseTableViewController.h"
 
-@interface RankingPageController : UIViewController
+@interface RankingPageController :BaseTableViewController
 
 @end

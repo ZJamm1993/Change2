@@ -83,4 +83,13 @@
     [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:video.poster]];
 }
 
+-(void)setCategory:(CategoryObject *)category
+{
+    _category=category;
+    
+    _nameLabel.text=[NSString stringWithFormat:@"\n%@",category.name];
+    _descLabel.text=@"";
+    [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:category.cover]];
+}
+
 @end

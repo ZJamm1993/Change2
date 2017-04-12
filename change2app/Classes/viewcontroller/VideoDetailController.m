@@ -18,32 +18,45 @@
 
 @implementation VideoDetailController
 {
-    VideoPreviewCell* cell000;
+    NSInteger descriptionNumberOfLines;
 }
 
 -(void)viewDidLoad
 {
     [super viewDidLoad];
     
-    cell000=[[VideoPreviewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"a"];
-    cell000.video=self.video;
-    
     self.page=0;
     self.title=@"";
+    
+    descriptionNumberOfLines=2;
+    
     self.tableView.rowHeight=UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight=90;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
     self.url=[ApiTool videoRelatedJSON:self.video.id_];
     [self.refreshControl removeFromSuperview];
 //    [self.navigationController setNavigationBarHidden:YES];
+    
+    UIBarButtonItem* shareItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(share)];
+    UIBarButtonItem* collectItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"like"] style:UIBarButtonItemStylePlain target:self action:@selector(collect)];
+    UIBarButtonItem* downloadItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"download"] style:UIBarButtonItemStylePlain target:self action:@selector(download)];
+    self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:shareItem, collectItem, downloadItem, nil];
 }
 
-//-(void)viewWillAppear:(BOOL)animated
-//{
-//    [super viewWillAppear:animated];
-//    if (self.dataSource.count==0) {
-//        [self loadMore];
-//    }
-//}
+-(void)download
+{
+    
+}
+
+-(void)collect
+{
+    
+}
+
+-(void)share
+{
+    
+}
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -72,7 +85,9 @@
 //        cell00.video=self.video;
 //        return [cell00.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         
-        UITableViewCell* cell=cell000;
+        UITableViewCell* cell=[self tableView:tableView cellForRowAtIndexPath:indexPath];
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
         CGFloat hei=[cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
         NSLog(@"hei:%f",hei);
         return hei;
@@ -95,6 +110,7 @@
             cell.selectionStyle=UITableViewCellSelectionStyleNone;
         }
         cell.video=self.video;
+        cell.descriptionNumberOfLines=descriptionNumberOfLines;
         return cell;
     }
     else
@@ -144,6 +160,20 @@
     PlayerController* play=[[PlayerController alloc]init];
     play.url=self.video.url;
     [self presentMoviePlayerViewControllerAnimated:play];
+}
+
+-(void)videoPreviewShouldReloadHeight
+{
+    if (descriptionNumberOfLines==0) {
+        descriptionNumberOfLines=2;
+    }
+    else
+    {
+        descriptionNumberOfLines=0;
+    }
+//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
+    [self.tableView reloadData];
+//    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 
 @end

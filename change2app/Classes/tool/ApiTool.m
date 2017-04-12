@@ -15,24 +15,35 @@
     return @"http://api.change.so/v1";
 }
 
-+(NSString*)video
-{
-    return [NSString stringWithFormat:@"%@/videos",[ApiTool main]];
-}
-
 +(NSString*)videoRankingJSON
 {
-    return [NSString stringWithFormat:@"%@/ranking.json",[ApiTool video]];
+    return [NSString stringWithFormat:@"%@/videos/ranking.json",[ApiTool main]];
 }
 
 +(NSString*)videoJSON
 {
-    return [NSString stringWithFormat:@"%@.json",[ApiTool video]];
+    return [NSString stringWithFormat:@"%@/videos.json",[ApiTool main]];
 }
 
 +(NSString*)videoRelatedJSON:(NSInteger)videoId
 {
-    return [NSString stringWithFormat:@"%@/%ld/related.json",[ApiTool video],(long)videoId];
+    return [NSString stringWithFormat:@"%@/videos/%ld/related.json",[ApiTool main],(long)videoId];
+}
+
++(NSString*)categoriesJSON
+{
+    return [NSString stringWithFormat:@"%@/categories.json",[ApiTool main]];
+}
+
++(NSString*)categoriesVideosJSON:(NSInteger)categoryId
+{
+    //categories/2/videos.json
+    return [NSString stringWithFormat:@"%@/categories/%ld/videos.json",[ApiTool main],(long)categoryId];
+}
+
++(NSString*)searchJSON
+{
+    return [NSString stringWithFormat:@"%@/videos/search.json",[ApiTool main]];
 }
 
 @end

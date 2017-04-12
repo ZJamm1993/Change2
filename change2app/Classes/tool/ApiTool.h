@@ -11,9 +11,14 @@
 @interface ApiTool : NSObject
 
 +(NSString*)main;
-+(NSString*)video;
+
 +(NSString*)videoRankingJSON;
 +(NSString*)videoJSON;
 +(NSString*)videoRelatedJSON:(NSInteger)videoId;
+
++(NSString*)categoriesJSON;
++(NSString*)categoriesVideosJSON:(NSInteger)categoryId;
+
++(NSString*)searchJSON;
 
 @end

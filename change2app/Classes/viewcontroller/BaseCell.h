@@ -12,5 +12,6 @@
 @interface BaseCell : UITableViewCell
 
 @property (nonatomic,strong) VideoObject* video;
+@property (nonatomic,strong) CategoryObject* category;
 
 @end
