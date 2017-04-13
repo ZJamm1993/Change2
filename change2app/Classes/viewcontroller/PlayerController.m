@@ -24,6 +24,8 @@
         self.moviePlayer.contentURL=[NSURL URLWithString:self.url];
     }
     [self.moviePlayer play];
+    
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:UIApplicationDidEnterBackgroundNotification object:nil];
 }
 
 -(UIInterfaceOrientationMask)supportedInterfaceOrientations
