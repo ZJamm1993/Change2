@@ -14,6 +14,7 @@
 {
     self=[super init];
     if (self) {
+        _dictionary=[NSDictionary dictionaryWithDictionary:dictionary];
         _id_=[[dictionary valueForKey:@"id"]integerValue];
         _channel_id=[[dictionary valueForKey:@"channel_id"]integerValue];
         _category_id=[[dictionary valueForKey:@"category_id"]integerValue];

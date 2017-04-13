@@ -11,5 +11,6 @@
 @interface PlayerController : MPMoviePlayerViewController
 
 @property (nonatomic,strong) NSString* url;
+@property (nonatomic,assign) BOOL isLocal;
 
 @end

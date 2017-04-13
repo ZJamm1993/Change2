@@ -16,6 +16,7 @@
     UIView* _tintView;
     UILabel* _nameLabel;
     UILabel* _descLabel;
+    UILabel* _progressLabel;
 }
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
@@ -45,6 +46,13 @@
         _descLabel.font=[UIFont systemFontOfSize:12];
         [self.contentView addSubview:_descLabel];
         
+        _progressLabel=[[UILabel alloc]init];
+        _progressLabel.numberOfLines=1;
+        _progressLabel.textAlignment=NSTextAlignmentCenter;
+        _progressLabel.textColor=[UIColor whiteColor];
+        _progressLabel.font=[UIFont systemFontOfSize:12];
+        [self.contentView addSubview:_progressLabel];
+        
         [_backgroundImageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.left.right.bottom.equalTo(self.contentView);
         }];
@@ -59,10 +67,15 @@
             make.right.equalTo(self.contentView.mas_right).offset(-40);
         }];
         
-        [_descLabel mas_updateConstraints:^(MASConstraintMaker *make) {
+        [_descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.top.equalTo(_nameLabel.mas_bottom).offset(20);
             make.left.equalTo(_nameLabel.mas_left);
             make.right.equalTo(_nameLabel.mas_right);
+        }];
+        
+        [_progressLabel mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.left.right.equalTo(self.contentView);
+            make.bottom.equalTo(self.contentView.mas_bottom).offset(-20);
         }];
     }
     return self;
@@ -81,12 +94,24 @@
     _descLabel.text=desc;
     
     [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:video.poster]];
+    
+    BOOL showProgress=(video.progress&&(!video.progress.finished));
+    if (showProgress) {
+        CGFloat to=(CGFloat)video.progress.totalData;
+        CGFloat co=(CGFloat)video.progress.completedData;
+        if (to!=0) {
+             long pro=co/to*100;
+            _progressLabel.text=[NSString stringWithFormat:@"缓存 %ld%%",pro];
+        }
+    }
+    else if (video.progress.finished) {
+        _progressLabel.text=@"已缓存";
+    }
 }
 
 -(void)setCategory:(CategoryObject *)category
 {
     _category=category;
-    
     _nameLabel.text=[NSString stringWithFormat:@"\n%@",category.name];
     _descLabel.text=@"";
     [_backgroundImageView sd_setImageWithURL:[NSURL URLWithString:category.cover]];

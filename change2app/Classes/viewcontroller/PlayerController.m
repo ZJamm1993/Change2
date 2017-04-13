@@ -14,10 +14,15 @@
 {
     [super viewDidLoad];
     
-    NSURL *moveURl = [NSURL URLWithString:self.url];
-    self.moviePlayer.movieSourceType=MPMovieSourceTypeStreaming;
-    self.moviePlayer.contentURL=moveURl;
-    
+    if (self.isLocal) {
+        self.moviePlayer.movieSourceType=MPMovieSourceTypeFile;
+        self.moviePlayer.contentURL=[NSURL fileURLWithPath:self.url];
+    }
+    else
+    {
+        self.moviePlayer.movieSourceType=MPMovieSourceTypeStreaming;
+        self.moviePlayer.contentURL=[NSURL URLWithString:self.url];
+    }
     [self.moviePlayer play];
 }
 

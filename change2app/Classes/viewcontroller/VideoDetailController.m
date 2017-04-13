@@ -11,6 +11,7 @@
 #import "VideoPreviewCell.h"
 #import "Masonry.h"
 #import "PlayerController.h"
+#import "FileTool.h"
 
 @interface VideoDetailController()<VideoPreviewDelegate>
 
@@ -19,6 +20,7 @@
 @implementation VideoDetailController
 {
     NSInteger descriptionNumberOfLines;
+    BOOL isDownLoaded;
 }
 
 -(void)viewDidLoad
@@ -41,11 +43,54 @@
     UIBarButtonItem* collectItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"like"] style:UIBarButtonItemStylePlain target:self action:@selector(collect)];
     UIBarButtonItem* downloadItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"download"] style:UIBarButtonItemStylePlain target:self action:@selector(download)];
     self.navigationItem.rightBarButtonItems=[NSArray arrayWithObjects:shareItem, collectItem, downloadItem, nil];
+    
+    if ([[FileTool sharedInstancetype]existDownloadedUrl:self.video.url]) {
+        [self setIsDownLoaded];
+    }
+    
+    [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadProgressNotification:) name:FILE_DOWNLOAD_PROCESS_NOTIFICATION object:nil];
+}
+
+-(void)setIsDownLoaded
+{
+    isDownLoaded=YES;
+    UIBarButtonItem* dow=self.navigationItem.rightBarButtonItems.lastObject;
+    dow.image=nil;
+    dow.title=@"已缓存";
+//    dow.enabled=NO;
+}
+
+-(void)downloadProgressNotification:(NSNotification*)notification
+{
+    NSDictionary* user=notification.userInfo;
+    DownLoadProgress* pro=[user valueForKey:@"progress"];
+    if ([pro.url isEqualToString:self.video.url]) {
+//        statements
+        
+        if (pro.finished==NO) {
+            if (pro.totalData!=0) {
+                CGFloat per=((CGFloat)pro.completedData)/((CGFloat)pro.totalData)*100;
+                long perp=(long)per;
+                if (!isDownLoaded) {
+                    UIBarButtonItem* dow=self.navigationItem.rightBarButtonItems.lastObject;
+                    dow.image=nil;
+                    dow.title=[NSString stringWithFormat:@"%ld%%",(long)perp];
+                    NSLog(@"%@",[NSThread currentThread]);
+                }
+            }
+        }
+        else
+        {
+            [self setIsDownLoaded];
+        }
+    }
 }
 
 -(void)download
 {
-    
+    if (!isDownLoaded) {
+        [[FileTool sharedInstancetype]downloadVideo:self.video];
+    }
 }
 
 -(void)collect
@@ -159,6 +204,10 @@
 {
     PlayerController* play=[[PlayerController alloc]init];
     play.url=self.video.url;
+    if (isDownLoaded) {
+        play.url=[[FileTool sharedInstancetype]filePathWithDownloadedUrl:self.video.url];
+        play.isLocal=YES;
+    }
     [self presentMoviePlayerViewControllerAnimated:play];
 }
 

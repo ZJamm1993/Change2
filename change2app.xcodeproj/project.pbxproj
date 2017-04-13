@@ -65,6 +65,8 @@
 		3963D82D1E9E29BD0044BC1A /* DownloadedController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D82C1E9E29BD0044BC1A /* DownloadedController.m */; };
 		3963D8301E9E2B2F0044BC1A /* SettingController.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D82F1E9E2B2F0044BC1A /* SettingController.m */; };
 		3963D8331E9E2CB50044BC1A /* FileTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3963D8321E9E2CB50044BC1A /* FileTool.m */; };
+		396E2AAD1E9E486200DA997E /* DownLoadProgress.m in Sources */ = {isa = PBXBuildFile; fileRef = 396E2AAC1E9E486200DA997E /* DownLoadProgress.m */; };
+		396E2AB01E9E7C7B00DA997E /* CacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 396E2AAF1E9E7C7B00DA997E /* CacheTool.m */; };
 		39B818991E9CBA6E00507CA7 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 39B818981E9CBA6E00507CA7 /* MediaPlayer.framework */; };
 		39B8189D1E9CBAA500507CA7 /* PlayerController.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B8189C1E9CBAA500507CA7 /* PlayerController.m */; };
 		39B818A31E9CC20C00507CA7 /* VideoPreviewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 39B818A21E9CC20C00507CA7 /* VideoPreviewCell.m */; };
@@ -192,6 +194,10 @@
 		3963D82F1E9E2B2F0044BC1A /* SettingController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SettingController.m; sourceTree = "<group>"; };
 		3963D8311E9E2CB50044BC1A /* FileTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FileTool.h; sourceTree = "<group>"; };
 		3963D8321E9E2CB50044BC1A /* FileTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FileTool.m; sourceTree = "<group>"; };
+		396E2AAB1E9E486200DA997E /* DownLoadProgress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DownLoadProgress.h; sourceTree = "<group>"; };
+		396E2AAC1E9E486200DA997E /* DownLoadProgress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DownLoadProgress.m; sourceTree = "<group>"; };
+		396E2AAE1E9E7C7B00DA997E /* CacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CacheTool.h; sourceTree = "<group>"; };
+		396E2AAF1E9E7C7B00DA997E /* CacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CacheTool.m; sourceTree = "<group>"; };
 		39B818981E9CBA6E00507CA7 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
 		39B8189B1E9CBAA500507CA7 /* PlayerController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PlayerController.h; sourceTree = "<group>"; };
 		39B8189C1E9CBAA500507CA7 /* PlayerController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PlayerController.m; sourceTree = "<group>"; };
@@ -323,6 +329,10 @@
 				395D62131E9C8BE100013F22 /* NSDate+StringFormater.m */,
 				3963D8311E9E2CB50044BC1A /* FileTool.h */,
 				3963D8321E9E2CB50044BC1A /* FileTool.m */,
+				396E2AAB1E9E486200DA997E /* DownLoadProgress.h */,
+				396E2AAC1E9E486200DA997E /* DownLoadProgress.m */,
+				396E2AAE1E9E7C7B00DA997E /* CacheTool.h */,
+				396E2AAF1E9E7C7B00DA997E /* CacheTool.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -507,6 +517,7 @@
 				395D62111E9C83B000013F22 /* BaseCell.m in Sources */,
 				395D62091E9C7A5D00013F22 /* NSArray+MASAdditions.m in Sources */,
 				395D61E01E9C772B00013F22 /* RankingPageController.m in Sources */,
+				396E2AAD1E9E486200DA997E /* DownLoadProgress.m in Sources */,
 				395D624C1E9CA65A00013F22 /* SmallCell.m in Sources */,
 				395D62451E9C92F800013F22 /* UIImageView+WebCache.m in Sources */,
 				395D61DD1E9C771A00013F22 /* CategoryPageController.m in Sources */,
@@ -539,6 +550,7 @@
 				395D61D41E9C769B00013F22 /* TabbarController.m in Sources */,
 				395D62141E9C8BE100013F22 /* NSDate+StringFormater.m in Sources */,
 				3963D82A1E9E28910044BC1A /* CollectionController.m in Sources */,
+				396E2AB01E9E7C7B00DA997E /* CacheTool.m in Sources */,
 				395D62081E9C7A5D00013F22 /* MASViewConstraint.m in Sources */,
 				395D61E31E9C77B000013F22 /* BaseTableViewController.m in Sources */,
 				395D61E61E9C781500013F22 /* HttpTool.m in Sources */,

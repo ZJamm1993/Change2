@@ -10,10 +10,13 @@
 #import "CategoryObject.h"
 #import "ChannelObject.h"
 #import "NSDate+StringFormater.h"
+#import "DownLoadProgress.h"
 
 @interface VideoObject : NSObject
 
 -(instancetype)initWithDictionary:(NSDictionary*)dictionary;
+
+@property NSDictionary* dictionary;
 
 @property NSInteger id_;
 @property NSInteger channel_id;
@@ -36,6 +39,8 @@
 @property NSArray* tag_list;
 @property ChannelObject* channel;
 @property CategoryObject* category;
+
+@property DownLoadProgress* progress;
 
 @end
 
