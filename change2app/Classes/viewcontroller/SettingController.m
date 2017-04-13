@@ -7,31 +7,86 @@
 //
 
 #import "SettingController.h"
+#import "FileTool.h"
+#import "Masonry.h"
 
-@interface SettingController ()
-
+@interface SettingController ()<UITableViewDataSource,UITableViewDelegate,UIAlertViewDelegate>
+{
+    UITableView* _tableView;
+    NSString* cacheDetailString;
+}
 @end
 
 @implementation SettingController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.title=@"设置";
+    self.view.backgroundColor=[UIColor whiteColor];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.delegate=self;
+    _tableView.dataSource=self;
+    _tableView.rowHeight=66;
+    _tableView.tableFooterView=[[UIView alloc]init];
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.view);
+    }];
     // Do any additional setup after loading the view.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self refreshCache];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return 1;
 }
-*/
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* idd=@"profilecell";
+    UITableViewCell* cell=[tableView dequeueReusableCellWithIdentifier:idd];
+    if (cell==nil) {
+        cell=[[UITableViewCell alloc]initWithStyle:UITableViewCellStyleValue1 reuseIdentifier:idd];
+        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    }
+    cell.textLabel.text=@"清除缓存";
+    cell.detailTextLabel.text=cacheDetailString;
+    return cell;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    if(indexPath.row==0)
+    {
+        UIAlertView* alert=[[UIAlertView alloc]initWithTitle:@"删除缓存" message:@"将会删除所有已下载的视频和图片" delegate:self cancelButtonTitle:@"取消" otherButtonTitles:@"删除", nil];
+        [alert show];
+    }
+}
+
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    if (buttonIndex==1) {
+        [self clearCache];
+    }
+}
+
+-(void)refreshCache
+{
+    double size=[[FileTool sharedInstancetype]cacheFilesSize];
+    cacheDetailString=[NSString stringWithFormat:@"%.2f MB",size];
+    [_tableView reloadData];
+}
+
+-(void)clearCache
+{
+    [[FileTool sharedInstancetype]deleteCacheFiles];
+    [self refreshCache];
+}
 
 @end

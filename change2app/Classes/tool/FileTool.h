@@ -21,6 +21,9 @@
 -(BOOL)existDownloadedUrl:(NSString*)url;
 -(void)deleteVideo:(VideoObject*)video;
 
+-(double)cacheFilesSize;
+-(void)deleteCacheFiles;
+
 -(NSString*)filePathWithDownloadedUrl:(NSString*)url;
 
 @end

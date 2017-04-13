@@ -12,8 +12,9 @@
 #import "Masonry.h"
 #import "PlayerController.h"
 #import "FileTool.h"
+#import "CollectionTool.h"
 
-@interface VideoDetailController()<VideoPreviewDelegate>
+@interface VideoDetailController()<VideoPreviewDelegate,UIActionSheetDelegate>
 
 @end
 
@@ -21,6 +22,7 @@
 {
     NSInteger descriptionNumberOfLines;
     BOOL isDownLoaded;
+    BOOL isCollected;
 }
 
 -(void)viewDidLoad
@@ -47,6 +49,9 @@
     if ([[FileTool sharedInstancetype]existDownloadedUrl:self.video.url]) {
         [self setIsDownLoaded];
     }
+    if ([CollectionTool hasCollectedVideo:self.video]) {
+        [self setIsCollected];
+    }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadProgressNotification:) name:FILE_DOWNLOAD_PROCESS_NOTIFICATION object:nil];
 }
@@ -57,7 +62,14 @@
     UIBarButtonItem* dow=self.navigationItem.rightBarButtonItems.lastObject;
     dow.image=nil;
     dow.title=@"已缓存";
-//    dow.enabled=NO;
+    dow.enabled=NO;
+}
+
+-(void)setIsCollected
+{
+    isCollected=YES;
+    UIBarButtonItem* coll=[self.navigationItem.rightBarButtonItems objectAtIndex:1];
+    coll.image=[[UIImage imageNamed:@"liked"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
 }
 
 -(void)downloadProgressNotification:(NSNotification*)notification
@@ -95,12 +107,19 @@
 
 -(void)collect
 {
-    
+    [CollectionTool collectVideo:self.video];
+    [self setIsCollected];
 }
 
 -(void)share
 {
-    
+    UIActionSheet* sheet=[[UIActionSheet alloc]initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈", nil];
+    [sheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSLog(@"%d",(int)buttonIndex);
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
@@ -220,8 +239,8 @@
     {
         descriptionNumberOfLines=0;
     }
-//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationBottom];
-    [self.tableView reloadData];
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView reloadData];
 //    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 

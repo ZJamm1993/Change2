@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3946C5581E9F48C900822512 /* CollectionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 3946C5571E9F48C900822512 /* CollectionTool.m */; };
 		395D61981E9C68EC00013F22 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D61971E9C68EC00013F22 /* main.m */; };
 		395D619B1E9C68EC00013F22 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 395D619A1E9C68EC00013F22 /* AppDelegate.m */; };
 		395D61A31E9C68EC00013F22 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 395D61A21E9C68EC00013F22 /* Assets.xcassets */; };
@@ -73,6 +74,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		3946C5561E9F48C900822512 /* CollectionTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CollectionTool.h; sourceTree = "<group>"; };
+		3946C5571E9F48C900822512 /* CollectionTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CollectionTool.m; sourceTree = "<group>"; };
 		395D61931E9C68EC00013F22 /* change2app.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = change2app.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		395D61971E9C68EC00013F22 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		395D61991E9C68EC00013F22 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -333,6 +336,8 @@
 				396E2AAC1E9E486200DA997E /* DownLoadProgress.m */,
 				396E2AAE1E9E7C7B00DA997E /* CacheTool.h */,
 				396E2AAF1E9E7C7B00DA997E /* CacheTool.m */,
+				3946C5561E9F48C900822512 /* CollectionTool.h */,
+				3946C5571E9F48C900822512 /* CollectionTool.m */,
 			);
 			path = tool;
 			sourceTree = "<group>";
@@ -535,6 +540,7 @@
 				395D620E1E9C7F9000013F22 /* Foundation+Log.m in Sources */,
 				3963D8301E9E2B2F0044BC1A /* SettingController.m in Sources */,
 				395D623A1E9C92F800013F22 /* SDWebImageCompat.m in Sources */,
+				3946C5581E9F48C900822512 /* CollectionTool.m in Sources */,
 				395D623C1E9C92F800013F22 /* SDWebImageDownloader.m in Sources */,
 				395D623D1E9C92F800013F22 /* SDWebImageDownloaderOperation.m in Sources */,
 				395D623B1E9C92F800013F22 /* SDWebImageDecoder.m in Sources */,

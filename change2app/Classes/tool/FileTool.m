@@ -9,6 +9,7 @@
 #import "FileTool.h"
 #import "AFNetworking.h"
 #import "CacheTool.h"
+#import "SDImageCache.h"
 
 #define DOWNLOAD_VIDEO_KEY @"download_video_key"
 
@@ -239,6 +240,62 @@ static FileTool* fileToolInstance;
 -(void)setShouldPostNotification
 {
     shouldPostNotification=YES;
+}
+
+-(double)sizeForDocument
+{
+    NSString* path=[self defaultRootPath];
+    // 1.获得文件夹管理者
+    NSFileManager *manger = [NSFileManager defaultManager];
+    // 2.检测路径的合理性
+    BOOL dir = NO;
+    BOOL exits = [manger fileExistsAtPath:path isDirectory:&dir];
+    if (!exits) return 0;
+    // 3.判断是否为文件夹
+    if (dir) { // 文件夹, 遍历文件夹里面的所有文件
+        // 这个方法能获得这个文件夹下面的所有子路径(直接\间接子路径)
+        NSArray *subpaths = [manger subpathsAtPath:path];
+        int totalSize = 0;
+        for (NSString *subpath in subpaths) {
+            NSString *fullsubpath = [path stringByAppendingPathComponent:subpath];
+            BOOL dir = NO;
+            [manger fileExistsAtPath:fullsubpath isDirectory:&dir];
+            if (!dir) { // 子路径是个文件
+                NSDictionary *attrs = [manger attributesOfItemAtPath:fullsubpath error:nil];
+                totalSize += [attrs[NSFileSize] intValue];
+            }
+        }
+        return totalSize / (1024 * 1024.0);
+    } else { // 文件
+        NSDictionary *attrs = [manger attributesOfItemAtPath:path error:nil];
+        return [attrs[NSFileSize] intValue] / (1024.0 * 1024.0);
+    }
+}
+
+-(double)sizeForImageCache
+{
+    NSUInteger size=[[SDImageCache sharedImageCache]getSize];
+    double sizeMb=((double)size)/1024.0/1024.0;
+    return sizeMb;
+}
+
+-(double)cacheFilesSize
+{
+    return [self sizeForDocument]+[self sizeForImageCache];
+}
+
+-(void)deleteCacheFiles
+{
+    [[SDImageCache sharedImageCache]clearDisk];
+    
+    NSString* path=[self defaultRootPath];
+    // 1.获得文件夹管理者
+    NSFileManager *manger = [NSFileManager defaultManager];
+    NSArray* subPaths=[manger subpathsAtPath:path];
+    for (NSString* fi in subPaths) {
+        NSString* fullPath=[NSString stringWithFormat:@"%@/%@",path,fi];
+        [manger removeItemAtPath:fullPath error:nil];
+    }
 }
 
 @end

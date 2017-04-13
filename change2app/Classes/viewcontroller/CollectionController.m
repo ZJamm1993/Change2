@@ -7,31 +7,97 @@
 //
 
 #import "CollectionController.h"
+#import "Masonry.h"
+#import "CacheTool.h"
+#import "BaseCell.h"
+#import "CollectionTool.h"
+#import "VideoDetailController.h"
 
-@interface CollectionController ()
-
+@interface CollectionController ()<UITableViewDataSource,UITableViewDelegate>
+{
+    UITableView* _tableView;
+    NSMutableArray* _dataSource;
+}
 @end
 
 @implementation CollectionController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.title=@"收藏";
+    
+    _dataSource=[NSMutableArray array];
+    _tableView=[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    _tableView.rowHeight=160;
+    _tableView.dataSource=self;
+    _tableView.delegate=self;
+    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_tableView];
+    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.top.bottom.equalTo(self.view);
+    }];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+-(void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    [self loadCache];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+-(void)loadCache
+{
+    NSDictionary* cache=[CollectionTool collectionVideos];
+    NSArray* videos=[cache valueForKey:@"videos"];
+    [_dataSource removeAllObjects];
+    for (NSDictionary* vid in videos) {
+        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
+        [_dataSource addObject:vo];
+    }
+    if (_dataSource.count>0) {
+        [_tableView reloadData];
+    }
 }
-*/
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return _dataSource.count;
+}
+
+-(UITableViewCell*)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    NSString* idd=@"basecell";
+    BaseCell* cell=[tableView dequeueReusableCellWithIdentifier:idd];
+    if (cell==nil) {
+        cell=[[BaseCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:idd];
+    }
+    VideoObject* video=[_dataSource objectAtIndex:indexPath.row];
+    cell.video=video;
+    return cell;
+}
+
+-(void)tableView:(UITableView*)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    VideoObject* video=[_dataSource objectAtIndex:indexPath.row];
+    VideoDetailController* detail=[[VideoDetailController alloc]init];
+    detail.video=video;
+    [self.navigationController pushViewController:detail animated:YES];
+}
+
+-(BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return YES;
+}
+
+-(void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle==UITableViewCellEditingStyleDelete) {
+        VideoObject* deleVideo=[_dataSource objectAtIndex:indexPath.row];
+        [_dataSource removeObjectAtIndex:indexPath.row];
+        [CollectionTool deleteCollectionVideo:deleVideo];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }
+}
 
 @end

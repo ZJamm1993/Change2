@@ -46,6 +46,7 @@
     str=[str stringByReplacingOccurrencesOfString:@"T" withString:@" "];
     str=[str stringByReplacingOccurrencesOfString:@".000Z" withString:@""];
     NSDateFormatter* formater = [[NSDateFormatter alloc] init];
+    [formater setTimeZone:[NSTimeZone timeZoneWithName:@"shanghai"]];
     [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
     return [formater dateFromString:str];
 }
