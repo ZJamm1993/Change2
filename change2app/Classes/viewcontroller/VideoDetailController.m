@@ -72,9 +72,18 @@
 
 -(void)setIsCollected
 {
-    isCollected=YES;
-    UIBarButtonItem* coll=[self.navigationItem.rightBarButtonItems objectAtIndex:1];
-    coll.image=[[UIImage imageNamed:@"liked"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    if(isCollected==NO)
+    {
+        isCollected=YES;
+        UIBarButtonItem* coll=[self.navigationItem.rightBarButtonItems objectAtIndex:1];
+        coll.image=[[UIImage imageNamed:@"liked"]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
+    }
+    else
+    {
+        isCollected=NO;
+        UIBarButtonItem* coll=[self.navigationItem.rightBarButtonItems objectAtIndex:1];
+        coll.image=[UIImage imageNamed:@"like"];
+    }
 }
 
 -(void)downloadProgressNotification:(NSNotification*)notification
@@ -112,7 +121,13 @@
 
 -(void)collect
 {
-    [CollectionTool collectVideo:self.video];
+    if (isCollected) {
+        [CollectionTool deleteCollectionVideo:self.video];
+    }
+    else
+    {
+        [CollectionTool collectVideo:self.video];
+    }
     [self setIsCollected];
 }
 
