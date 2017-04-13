@@ -10,6 +10,9 @@
 #import "SearchPageController.h"
 
 @implementation HomePageController
+{
+    SearchPageController* searchPage;
+}
 
 -(void)viewDidLoad
 {
@@ -24,9 +27,11 @@
 
 -(void)goSearch
 {
-    SearchPageController* sc=[[SearchPageController alloc]init];
+    if (searchPage==nil) {
+        searchPage=[[SearchPageController alloc]init];
+    }
 //    sc.preSearchingString=@"阿诺";
-    [self.navigationController pushViewController:sc animated:YES];
+    [self.navigationController pushViewController:searchPage animated:YES];
 }
 
 @end
