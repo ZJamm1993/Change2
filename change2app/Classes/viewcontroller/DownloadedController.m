@@ -145,9 +145,17 @@
         if([video.url isEqualToString:pro.url])
         {
             video.progress=pro;
+            NSArray* showingCells=[_tableView visibleCells];
+            for (UITableViewCell* cell in showingCells) {
+                if ([cell isKindOfClass:[BaseCell class]]) {
+                    BaseCell* bc=(BaseCell*)cell;
+                    if (bc.video.id_==video.id_) {
+                        bc.video=video;
+                    }
+                }
+            }
         }
     }
-    [_tableView reloadData];
 }
 
 @end

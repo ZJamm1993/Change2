@@ -74,40 +74,62 @@
 
 -(void)refreshNew
 {
+    __weak typeof(self) weakSelf=self;
     [_params setValue:[NSNumber numberWithInteger:1] forKey:MY_PAGE_KEY];
     [_params setValue:[NSNumber numberWithInteger:_per_page] forKey:MY_PER_PAGE_KEY];
     [HttpTool get:_url params:_usingPage?[NSDictionary dictionaryWithDictionary:_params]:nil success:^(id responseObject) {
-//        NSLog(@"%@",responseObject);
-        _page=1;
-        [self didRefreshWithDictionary:responseObject];
-        [self saveCacheWithDictionary:responseObject];
-        [_tableView reloadData];
-        [_refreshControl endRefreshing];
+        [weakSelf refreshSuccessBlockWithObject:responseObject];
     } failure:^(NSError *error) {
-        //        NSLog(@"%@",error.description);
-        [_refreshControl endRefreshing];
+        [weakSelf refreshFailBlockWithError:error];
     }];
+}
+
+-(void)refreshSuccessBlockWithObject:(id)responseObject
+{
+    //        NSLog(@"%@",responseObject);
+    _page=1;
+    [self didRefreshWithDictionary:responseObject];
+    [self saveCacheWithDictionary:responseObject];
+    [_tableView reloadData];
+    [_refreshControl endRefreshing];
+}
+
+-(void)refreshFailBlockWithError:(NSError*)error
+{
+    //        NSLog(@"%@",error.description);
+    [_refreshControl endRefreshing];
 }
 
 -(void)loadMore
 {
     if (_usingPage) {
+        __weak typeof(self) weakSelf=self;
         [_params setValue:[NSNumber numberWithInteger:_page+1] forKey:MY_PAGE_KEY];
         [_params setValue:[NSNumber numberWithInteger:_per_page] forKey:MY_PER_PAGE_KEY];
         [HttpTool get:_url params:_usingPage?[NSDictionary dictionaryWithDictionary:_params]:nil success:^(id responseObject) {
-//            NSLog(@"%@",responseObject);
-            NSInteger oldCount=self.dataSource.count;
-            [self didLoadMoreWithDictionary:responseObject];
-            NSInteger newCount=self.dataSource.count;
-            if (newCount>oldCount) {
-                NSLog(@"loaded page: %ld",(long)_page);
-                _page++;
-                [_tableView reloadData];
-            }
+            [weakSelf loadMoreSuccessBlockWithObject:responseObject];
         } failure:^(NSError *error) {
-//            NSLog(@"%@",error.description);
+            [weakSelf loadMoreFailBlockWithError:error];  
         }];
     }
+}
+
+-(void)loadMoreSuccessBlockWithObject:(id)responseObject
+{
+    //            NSLog(@"%@",responseObject);
+    NSInteger oldCount=self.dataSource.count;
+    [self didLoadMoreWithDictionary:responseObject];
+    NSInteger newCount=self.dataSource.count;
+    if (newCount>oldCount) {
+        NSLog(@"loaded page: %ld",(long)_page);
+        _page++;
+        [_tableView reloadData];
+    }
+}
+
+-(void)loadMoreFailBlockWithError:(NSError*)error
+{
+    //        NSLog(@"%@",error.description);
 }
 
 -(void)didRefreshWithDictionary:(NSDictionary *)dictionary

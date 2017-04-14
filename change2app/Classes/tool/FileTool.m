@@ -131,10 +131,21 @@ static FileTool* fileToolInstance;
 
 -(void)deleteVideo:(VideoObject *)video
 {
+    [self cancelDownloadVideo:video];
     NSString* path=[self filePathWithDownloadedUrl:video.url];
     NSFileManager* ma=[NSFileManager defaultManager];
     if ([ma fileExistsAtPath:path]) {
         [ma removeItemAtPath:path error:nil];
+    }
+}
+
+-(void)cancelDownloadVideo:(VideoObject*)video
+{
+    for (NSURLSessionDownloadTask* task in downloadingFiles) {
+        BOOL isThisURL=[task.originalRequest.URL.absoluteString isEqualToString:video.url];
+        if (isThisURL) {
+            [task cancel];
+        }
     }
 }
 
@@ -157,16 +168,17 @@ static FileTool* fileToolInstance;
     }
     
     NSString* url=video.url;
-    BOOL isDownLoaded=[self existDownloadedUrl:url];
-    BOOL isDownLoading=[self existDownloadingUrl:url];
-    if (!(isDownLoaded||isDownLoading)) {
-        [self downloadFile:url];
-    }
+    [self downloadFile:url];
 }
 
 -(void)downloadFile:(NSString*)url
 {
-//    url=@"ht tps://ss0.bdstatic.com/5aV1bjqh_Q23odCf/static/superman/img/logo/bd_logo1_31bdc765.png";
+    BOOL isDownLoaded=[self existDownloadedUrl:url];
+    BOOL isDownLoading=[self existDownloadingUrl:url];
+    if (isDownLoaded||isDownLoading) {
+        return;
+    }
+    
     NSString* savingName=[self getNameFromUrlString:url];
     if ([savingName rangeOfString:@".mp4"].location==NSNotFound) {
         return;
@@ -195,20 +207,17 @@ static FileTool* fileToolInstance;
 //        NSLog(@"saving path: %@",fullPath);
         return [NSURL fileURLWithPath:fullPath];
     } completionHandler:^(NSURLResponse* response, NSURL* filePath, NSError* error) {
-        if (response) {
-            DownLoadProgress* pro=[[DownLoadProgress alloc]init];
-            pro.totalData=1;
-            pro.completedData=1;
-            pro.url=url;
-            pro.finished=YES;
-            [self sendNotificationWithProgress:pro];
-            
-            NSLog(@"response:%@",response.description);
-            NSLog(@"filepath: %@",filePath.absoluteString);
-        }
-        else
+        NSHTTPURLResponse* httpRes=([response isKindOfClass:[NSHTTPURLResponse class]])?(NSHTTPURLResponse*)response:nil;
+        DownLoadProgress* pro=[[DownLoadProgress alloc]init];
+        pro.totalData=1;
+        pro.completedData=0;
+        pro.url=url;
+        pro.finished=(httpRes.statusCode==200);
+        pro.failed=!pro.finished;
+        [self sendNotificationWithProgress:pro];
+        if(pro.failed)
         {
-            NSLog(@"error:%@",error.description);
+            [self downloadFile:url];
         }
     }];
     [task resume];

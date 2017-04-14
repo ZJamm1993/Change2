@@ -101,7 +101,7 @@
                     UIBarButtonItem* dow=self.navigationItem.rightBarButtonItems.lastObject;
                     dow.image=nil;
                     dow.title=[NSString stringWithFormat:@"%ld%%",(long)perp];
-                    NSLog(@"%@",[NSThread currentThread]);
+//                    NSLog(@"%@",[NSThread currentThread]);
                 }
             }
         }

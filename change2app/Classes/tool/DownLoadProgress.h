@@ -14,5 +14,6 @@
 @property (nonatomic,assign) int64_t totalData;
 @property (nonatomic,assign) int64_t completedData;
 @property (nonatomic,assign) BOOL finished;
+@property (nonatomic,assign) BOOL failed;
 
 @end
