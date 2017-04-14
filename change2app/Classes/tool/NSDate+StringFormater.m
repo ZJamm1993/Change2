@@ -43,12 +43,16 @@
 
 +(NSDate*)dateWithString:(NSString *)str
 {
-    str=[str stringByReplacingOccurrencesOfString:@"T" withString:@" "];
-    str=[str stringByReplacingOccurrencesOfString:@".000Z" withString:@""];
+//    NSLog(@"str:%@",str);
+//    str=[str stringByReplacingOccurrencesOfString:@"T" withString:@" "];
+//    str=[str stringByReplacingOccurrencesOfString:@".000Z" withString:@""];
+    str=[str stringByReplacingOccurrencesOfString:@".000Z" withString:@"UTC"];
     NSDateFormatter* formater = [[NSDateFormatter alloc] init];
-    [formater setTimeZone:[NSTimeZone timeZoneWithName:@"shanghai"]];
-    [formater setDateFormat:@"yyyy-MM-dd HH:mm:ss"];
-    return [formater dateFromString:str];
+//    [formater setTimeZone:[NSTimeZone timeZoneWithName:@"shanghai"]];
+    [formater setDateFormat:@"yyyy-MM-dd'T'HH:mm:ssZ"];
+    NSDate* date=[formater dateFromString:str];
+//    NSLog(@"dat:%@",date);
+    return date;
 }
 
 @end
