@@ -133,13 +133,32 @@
 
 -(void)share
 {
-    UIActionSheet* sheet=[[UIActionSheet alloc]initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈", nil];
+    UIActionSheet* sheet=[[UIActionSheet alloc]initWithTitle:@"分享" delegate:self cancelButtonTitle:@"取消" destructiveButtonTitle:nil otherButtonTitles:@"微信好友",@"微信朋友圈",@"复制分享链接",@"Safari打开", nil];
     [sheet showInView:self.view];
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
+    //@"微信好友",@"微信朋友圈",@"复制链接",@"Safari打开",
+    NSString* sharedUrl=self.video.share_url;
+    
     NSLog(@"%d",(int)buttonIndex);
+    if (buttonIndex==0) {
+        
+    }
+    else if(buttonIndex==1)
+    {
+        
+    }
+    else if(buttonIndex==2)
+    {
+        [[UIPasteboard generalPasteboard]setString:sharedUrl];
+    }
+    else if(buttonIndex==3)
+    {
+        NSURL* url=[NSURL URLWithString:sharedUrl];
+        [[UIApplication sharedApplication]openURL:url];
+    }
 }
 
 -(NSInteger)numberOfSectionsInTableView:(UITableView *)tableView

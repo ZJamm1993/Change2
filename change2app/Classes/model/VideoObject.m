@@ -32,7 +32,7 @@
         _random_id=[dictionary valueForKey:@"random_id"];
         _published_at=[[dictionary valueForKey:@"published_at"]doubleValue];
         _played_count=[[dictionary valueForKey:@"played_count"]integerValue];
-        _shared_url=[dictionary valueForKey:@"shared_url"];
+        _share_url=[dictionary valueForKey:@"share_url"];
         _tag_list=[dictionary valueForKey:@"tag_list"];
         _channel=[[ChannelObject alloc]initWithDictionary:[dictionary valueForKey:@"channel"]];
         _category=[[CategoryObject alloc]initWithDictionary:[dictionary valueForKey:@"category"]];

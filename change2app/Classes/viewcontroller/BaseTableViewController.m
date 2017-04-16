@@ -121,7 +121,7 @@
     [self didLoadMoreWithDictionary:responseObject];
     NSInteger newCount=self.dataSource.count;
     if (newCount>oldCount) {
-        NSLog(@"loaded page: %ld",(long)_page);
+//        NSLog(@"loaded page: %ld",(long)_page);
         _page++;
         [_tableView reloadData];
     }

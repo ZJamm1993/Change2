@@ -35,7 +35,7 @@
 @property NSString* random_id;
 @property NSTimeInterval published_at;
 @property NSInteger played_count;
-@property NSString* shared_url;
+@property NSString* share_url;
 @property NSArray* tag_list;
 @property ChannelObject* channel;
 @property CategoryObject* category;

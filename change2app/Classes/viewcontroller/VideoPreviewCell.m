@@ -32,6 +32,7 @@
         
         imageView=[[UIImageView alloc]init];
         imageView.contentMode=UIViewContentModeScaleAspectFill;
+        imageView.clipsToBounds=YES;
         [self.contentView addSubview:imageView];
         
         tintView=[[UIView alloc]init];
