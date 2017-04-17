@@ -13,6 +13,8 @@
 #import "PlayerController.h"
 #import "FileTool.h"
 #import "CollectionTool.h"
+#import "ShareTool.h"
+#import "UIImageView+WebCache.h"
 
 @interface VideoDetailController()<VideoPreviewDelegate,UIActionSheetDelegate>
 
@@ -23,6 +25,7 @@
     NSInteger descriptionNumberOfLines;
     BOOL isDownLoaded;
     BOOL isCollected;
+    UIImageView* thumbImageView;
 }
 
 -(void)viewDidLoad
@@ -39,7 +42,9 @@
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
     self.url=[ApiTool videoRelatedJSON:self.video.id_];
     [self.refreshControl removeFromSuperview];
-//    [self.navigationController setNavigationBarHidden:YES];
+    
+    thumbImageView=[[UIImageView alloc]init];
+    [thumbImageView sd_setImageWithURL:[NSURL URLWithString:self.video.poster]];
     
     UIBarButtonItem* shareItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"share"] style:UIBarButtonItemStylePlain target:self action:@selector(share)];
     UIBarButtonItem* collectItem=[[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"like"] style:UIBarButtonItemStylePlain target:self action:@selector(collect)];
@@ -144,11 +149,11 @@
     
     NSLog(@"%d",(int)buttonIndex);
     if (buttonIndex==0) {
-        
+        [[ShareTool alloc]shareWeChatWithUrl:sharedUrl title:self.video.name description:self.video.desc thumbImage:thumbImageView.image scene:WXSceneSession];
     }
     else if(buttonIndex==1)
     {
-        
+        [[ShareTool alloc]shareWeChatWithUrl:sharedUrl title:self.video.name description:self.video.desc thumbImage:thumbImageView.image scene:WXSceneTimeline];
     }
     else if(buttonIndex==2)
     {

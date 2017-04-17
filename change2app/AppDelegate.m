@@ -27,7 +27,19 @@
     [self.window makeKeyAndVisible];
     self.window.rootViewController=[[TabbarController alloc]init];
     
+    [WXApi registerApp:@"wxdc1288a5c294339a"];
+    
     return YES;
+}
+
+-(BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
+{
+    return [WXApi handleOpenURL:url delegate:self];
+}
+
+-(BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
+{
+    return [WXApi handleOpenURL:url delegate:self];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application {
