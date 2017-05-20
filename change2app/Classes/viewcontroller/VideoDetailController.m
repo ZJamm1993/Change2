@@ -32,6 +32,8 @@
 {
     [super viewDidLoad];
     
+    NSLog(@"video:\n%@",self.video.dictionary);
+    
     self.page=0;
     self.title=@"";
     
@@ -59,6 +61,8 @@
     }
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadProgressNotification:) name:FILE_DOWNLOAD_PROCESS_NOTIFICATION object:nil];
+    
+    
 }
 
 -(void)dealloc
@@ -184,12 +188,12 @@
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (indexPath.section==0) {
-        if([[[UIDevice currentDevice]systemVersion]floatValue]>=8)
-            return UITableViewAutomaticDimension;
-        else
-        {
-            
-        }
+//        if([[[UIDevice currentDevice]systemVersion]floatValue]>=8)
+//            return UITableViewAutomaticDimension;
+//        else
+//        {
+//            
+//        }
 //        cell00.video=self.video;
 //        return [cell00.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
         
@@ -199,7 +203,6 @@
         CGFloat hei=[cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height+1;
         NSLog(@"hei:%f",hei);
         return hei;
-//        return 500;
     }
     else
     {
@@ -283,8 +286,10 @@
     {
         descriptionNumberOfLines=0;
     }
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
-//    [self.tableView reloadData];
+//    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:[NSIndexPath indexPathForRow:0 inSection:0]] withRowAnimation:UITableViewRowAnimationAutomatic];
+//    [self.tableView beginUpdates];
+//    [self.tableView endUpdates];
+    [self.tableView reloadData];
 //    [self.tableView reloadSections:[NSIndexSet indexSetWithIndex:0] withRowAnimation:UITableViewRowAnimationNone];
 }
 

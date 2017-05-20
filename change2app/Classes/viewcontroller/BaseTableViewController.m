@@ -148,7 +148,9 @@
     NSArray* videos=[dictionary valueForKey:@"videos"];
     for (NSDictionary* vid in videos) {
         VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
-        [_dataSource addObject:vo];
+        if (vo) {
+            [_dataSource addObject:vo];
+        }
     }
 }
 
