@@ -37,9 +37,9 @@
         _channel=[[ChannelObject alloc]initWithDictionary:[dictionary valueForKey:@"channel"]];
         _category=[[CategoryObject alloc]initWithDictionary:[dictionary valueForKey:@"category"]];
         
-        if ([_url rangeOfString:@"app-upgrade-notification"].location!=NSNotFound) {
-            return nil;
-        }
+//        if ([_url rangeOfString:@"app-upgrade-notification"].location!=NSNotFound) {
+//            return nil;
+//        }
     }
     return self;
 }
