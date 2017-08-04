@@ -29,7 +29,7 @@
         [self.contentView addSubview:_backgroundImageView];
         
         _tintView=[[UIView alloc]init];
-        _tintView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.4];
+        _tintView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.2];
         [self.contentView addSubview:_tintView];
         
         _nameLabel=[[UILabel alloc]init];

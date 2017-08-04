@@ -12,7 +12,7 @@
 
 +(NSString*)main
 {
-    return @"http://api.change.so/v1";
+    return @"https://api.change.so/v2";
 }
 
 +(NSString*)videoRankingJSON
@@ -22,7 +22,7 @@
 
 +(NSString*)videoJSON
 {
-    return [NSString stringWithFormat:@"%@/videos.json",[ApiTool main]];
+    return [NSString stringWithFormat:@"%@/videos",[ApiTool main]];
 }
 
 +(NSString*)videoRelatedJSON:(NSInteger)videoId

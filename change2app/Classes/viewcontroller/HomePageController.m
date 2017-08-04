@@ -19,8 +19,8 @@
     [super viewDidLoad];
     self.title=@"Change";
     
-    UIBarButtonItem* sea=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goSearch)];
-    self.navigationItem.rightBarButtonItem=sea;
+//    UIBarButtonItem* sea=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goSearch)];
+//    self.navigationItem.rightBarButtonItem=sea;
     
     self.cacheKey=@"home_page_cache_key";
 }

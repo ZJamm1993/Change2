@@ -47,7 +47,7 @@
     _dataSource=[NSMutableArray array];
     
     _tableView=[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _tableView.rowHeight=160;
+    _tableView.rowHeight=[[UIScreen mainScreen]bounds].size.width*0.6;
     _tableView.dataSource=self;
     _tableView.delegate=self;
     _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -145,7 +145,7 @@
 
 -(void)buildDataSourceWithDictionary:(NSDictionary*)dictionary
 {
-    NSArray* videos=[dictionary valueForKey:@"videos"];
+    NSArray* videos=[dictionary valueForKeyPath:@"data.videos"];
     for (NSDictionary* vid in videos) {
         VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
         if (vo) {

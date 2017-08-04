@@ -35,6 +35,7 @@
 @property NSString* random_id;
 @property NSTimeInterval published_at;
 @property NSInteger played_count;
+@property BOOL pro;
 @property NSString* share_url;
 @property NSArray* tag_list;
 @property ChannelObject* channel;
@@ -45,57 +46,66 @@
 @end
 
 /*
- {
-     "id":665,
-     "channel_id":8,
-     "category_id":5,
-     "name":"男人心里想的VS.女人心里想的",
-     "desc":"约会能不能多一点真诚，少一点套路？ 这内心戏，实在是太足了。来源Timothy DeLaGhetto",
-     "url":"http://videos.cdn.change.so/video-0c61280807380b4b278f7a06664cf312.mp4",
-     "duration":252.608,
-     "width":1280,
-     "height":720,
-     "size":38332925,
-     "poster":"http://images.cdn.change.so/video-poster-57f8d3a8d7543bd0b8d00114c413936f.jpeg",
-     "shares_count":335,
-     "favorites_count":64,
-     "created_at":"2016-09-09T11:45:47.000Z",
-     "updated_at":"2016-11-08T05:36:40.000Z",
-     "random_id":"2nAiaQ",
-     "published_at":"2016-09-13T04:00:00.000Z",
-     "played_count":6667,
-     "share_url":"http://change.so/2nAiaQ",
-     "tag_list":[
-         "搞笑",
-         "美女",
-         "约会",
-         "生活",
-         "两性"
-     ],
-     "channel":{
-         "id":8,
-         "name":"RandomShit",
-         "avatar":"http://7xqt58.com2.z0.glb.qiniucdn.com/channel-avatar-699b57cbe13cea602eb822388ae574a5.jpeg",
-         "desc":"",
-         "videos_count":846,
-         "subscriptions_count":0,
-         "created_at":"2016-03-18T07:53:16.000Z",
-         "updated_at":"2016-03-18T08:03:23.000Z"
+ videos": [{
+     "id": 664,
+     "channel_id": 8,
+     "category_id": 4,
+     "name": "明星变型记part3",
+     "desc": "身材爆炸的好莱坞男星们，告诉你他们身材变化的真正秘密：刻苦，坚持，饮食，专注。没有其他。 来看看有没有你的男神吧！来源EpicMashups",
+     "url": "http:videos.ali.cdn.change.so/video-b3e6d2afbe67cb1b046d7e230a1e7a6d.mp4",
+     "duration": 631.258,
+     "width": 1280,
+     "height": 720,
+     "size": 109600429,
+     "poster": "http:images.cdn.change.so/video-poster-f0ba6346b76c38880ac086f51f482d6d.jpeg?imageView/1/w/256/h/144",
+     "shares_count": 7466,
+     "favorites_count": 3510,
+     "created_at": "2016-09-09T11:36:07.000Z",
+     "updated_at": "2017-07-30T15:37:15.000Z",
+     "random_id": "AbWhIg",
+     "published_at": "2016-09-12T16:00:00.000Z",
+     "played_count": 81888,
+     "anonymous_favorites_count": 141,
+     "pro": false,
+     "downloadable": false,
+     "demo_url": "",
+     "comments_count": 0,
+     "sort_index": 664,
+     "count": 4,
+     "share_name": "明星变型记part3 | Change 健身潮流文化社区",
+     "share_url": "http:change.so/AbWhIg",
+     "tag_list": ["明星", "肌肉", "增肌", "帅哥", "大片", "举铁", "励志", "好莱坞", "EpicMashups", "减脂", "记录"],
+     "channel": {
+         "id": 8,
+         "name": "全球精选",
+         "avatar": "http:images.cdn.change.so/channel-avatar-cb01c8d8d98041ccf637ca1dbaf152ec.png?imageView/1/w/160/h/160",
+         "desc": "网罗全球健身视频资讯 ",
+         "videos_count": 629,
+         "subscriptions_count": 0,
+         "created_at": "2016-03-18T07:53:16.000Z",
+         "updated_at": "2017-08-02T04:00:00.000Z",
+         "recommended": true,
+         "videos_played_count": 23605835,
+         "videos_shares_count": 467439,
+         "videos_favorites_count": 171675,
+         "last_published_video_published_at": "2017-08-02T04:00:00.000Z",
+         "avatar_full": "http:images.cdn.change.so/channel-avatar-cb01c8d8d98041ccf637ca1dbaf152ec.png"
      },
-     "category":{
-         "id":5,
-         "name":"潮流",
-         "desc":"",
-         "cover":"http://images.cdn.change.so/category-cover-5773c292455bda8388db649c87e30b89.jpeg",
-         "parent_id":null,
-         "lft":5,
-         "rgt":6,
-         "depth":0,
-         "children_count":0,
-         "videos_count":529,
-         "created_at":"2016-03-17T09:05:34.000Z",
-         "updated_at":"2017-03-07T08:40:56.000Z",
-         "order":7
-     }
- }
+     "category": {
+         "id": 4,
+         "name": "励志",
+         "desc": "",
+         "cover": "http:7xqt58.com2.z0.glb.qiniucdn.com/category-cover-32ce12a4d80153dd5d30142c6461355a.jpeg",
+         "parent_id": null,
+         "lft": 3,
+         "rgt": 4,
+         "depth": 0,
+         "children_count": 0,
+         "videos_count": 218,
+         "created_at": "2016-03-17T09:05:15.000Z",
+         "updated_at": "2016-06-28T08:47:48.000Z",
+         "order": 3
+     },
+     "favorited_by_current_user": false
+ },
  */

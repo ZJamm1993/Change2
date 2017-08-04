@@ -18,7 +18,7 @@
     UILabel* durationLabel;
     UILabel* titleLabel;
     UILabel* cateTimeLabel;
-    UIButton* moreButton;
+//    UIButton* moreButton;
     UILabel* descLabel;
 }
 
@@ -36,7 +36,7 @@
         [self.contentView addSubview:imageView];
         
         tintView=[[UIView alloc]init];
-        tintView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.4];
+        tintView.backgroundColor=[UIColor colorWithWhite:0 alpha:0.2];
         [self.contentView addSubview:tintView];
         
         playButton=[[UIButton alloc]init];
@@ -63,14 +63,14 @@
         titleLabel.preferredMaxLayoutWidth=textLabelPreferredMaxWidth;
         [self.contentView addSubview:titleLabel];
         
-        moreButton=[[UIButton alloc]init];
-        [moreButton setTitle:@"☞" forState:UIControlStateNormal];
-        moreButton.transform=CGAffineTransformMakeRotation(M_PI/2);
-        [moreButton setTitleColor:grayColor forState:UIControlStateNormal];
-        [moreButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
-        [[moreButton titleLabel]setFont:[UIFont systemFontOfSize:24]];
-        [moreButton addTarget:self action:@selector(morePressed) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView addSubview:moreButton];
+//        moreButton=[[UIButton alloc]init];
+//        [moreButton setTitle:@"☞" forState:UIControlStateNormal];
+//        moreButton.transform=CGAffineTransformMakeRotation(M_PI/2);
+//        [moreButton setTitleColor:grayColor forState:UIControlStateNormal];
+//        [moreButton setTitleColor:[UIColor lightGrayColor] forState:UIControlStateHighlighted];
+//        [[moreButton titleLabel]setFont:[UIFont systemFontOfSize:24]];
+//        [moreButton addTarget:self action:@selector(morePressed) forControlEvents:UIControlEventTouchUpInside];
+//        [self.contentView addSubview:moreButton];
         
         cateTimeLabel=[[UILabel alloc]init];
         cateTimeLabel.textAlignment=NSTextAlignmentLeft;
@@ -81,7 +81,7 @@
         
         descLabel=[[UILabel alloc]init];
         descLabel.textAlignment=NSTextAlignmentLeft;
-        descLabel.numberOfLines=self.descriptionNumberOfLines;
+        descLabel.numberOfLines=0;//self.descriptionNumberOfLines;
         descLabel.font=[UIFont systemFontOfSize:12];
         descLabel.textColor=grayColor;
 //        descLabel.lineBreakMode=NSLineBreakByClipping;
@@ -117,16 +117,16 @@
 //            make.height.equalTo(@(16));
         }];
         
-        [moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.width.height.equalTo(@(36));
-            make.centerY.equalTo(cateTimeLabel.mas_centerY);
-            make.right.equalTo(self.contentView.mas_right).offset(-10);
-        }];
+//        [moreButton mas_makeConstraints:^(MASConstraintMaker *make) {
+//            make.width.height.equalTo(@(36));
+//            make.centerY.equalTo(cateTimeLabel.mas_centerY);
+//            make.right.equalTo(self.contentView.mas_right).offset(-10);
+//        }];
         
         [cateTimeLabel mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.equalTo(self.contentView).insets(in10);
             make.top.equalTo(titleLabel.mas_bottom).offset(10);
-            make.right.equalTo(moreButton.mas_left).offset(-10);
+            make.right.equalTo(self.contentView).offset(-10);
 //            make.height.equalTo(@(12));
         }];
         
@@ -141,14 +141,14 @@
 
 -(void)setDescriptionNumberOfLines:(NSInteger)descriptionNumberOfLines
 {
-    _descriptionNumberOfLines=descriptionNumberOfLines;
-    descLabel.numberOfLines=_descriptionNumberOfLines;
+//    _descriptionNumberOfLines=descriptionNumberOfLines;
+//    descLabel.numberOfLines=_descriptionNumberOfLines;
     
-    CGFloat rotation=M_PI/2*(_descriptionNumberOfLines==0?1:-1);
-    moreButton.transform=CGAffineTransformMakeRotation(rotation);
-    [UIView animateWithDuration:0.25 animations:^{
-        moreButton.transform=CGAffineTransformMakeRotation(-rotation);
-    }];
+//    CGFloat rotation=M_PI/2*(_descriptionNumberOfLines==0?1:-1);
+//    moreButton.transform=CGAffineTransformMakeRotation(rotation);
+//    [UIView animateWithDuration:0.25 animations:^{
+//        moreButton.transform=CGAffineTransformMakeRotation(-rotation);
+//    }];
 }
 
 -(void)setVideo:(VideoObject *)video

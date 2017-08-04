@@ -32,6 +32,7 @@
         _random_id=[dictionary valueForKey:@"random_id"];
         _published_at=[[dictionary valueForKey:@"published_at"]doubleValue];
         _played_count=[[dictionary valueForKey:@"played_count"]integerValue];
+        _pro=[[dictionary valueForKeyPath:@"pro"]boolValue];
         _share_url=[dictionary valueForKey:@"share_url"];
         _tag_list=[dictionary valueForKey:@"tag_list"];
         _channel=[[ChannelObject alloc]initWithDictionary:[dictionary valueForKey:@"channel"]];
@@ -40,6 +41,9 @@
 //        if ([_url rangeOfString:@"app-upgrade-notification"].location!=NSNotFound) {
 //            return nil;
 //        }
+        if (_pro) {
+            return nil;
+        }
     }
     return self;
 }

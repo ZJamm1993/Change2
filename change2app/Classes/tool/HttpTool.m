@@ -17,7 +17,8 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 18;
     [manager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    
+    [manager.requestSerializer setValue:@"F0q61aB6GG6ZkcAN5/VI//wVjTPlNanQ6QmDWrU8FRU=" forHTTPHeaderField:@"X-Signature"];
+    [manager.requestSerializer setValue:@"Token token=" forHTTPHeaderField:@"Authorization"];
     return manager;
 }
 
@@ -33,6 +34,7 @@
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
         if (success) {
             success(responseObject);
+            NSLog(@"%@",responseObject);
         }
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         if (failure) {
