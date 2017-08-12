@@ -42,7 +42,7 @@
     self.tableView.rowHeight=UITableViewAutomaticDimension;
     self.tableView.estimatedRowHeight=90;
     self.tableView.separatorStyle=UITableViewCellSeparatorStyleSingleLine;
-    self.url=[ApiTool videoRelatedJSON:self.video.id_];
+//    self.url=[ApiTool videoRelatedJSON:self.video.id_];
     [self.refreshControl removeFromSuperview];
     
     thumbImageView=[[UIImageView alloc]init];
@@ -62,6 +62,16 @@
     
     [[NSNotificationCenter defaultCenter]addObserver:self selector:@selector(downloadProgressNotification:) name:FILE_DOWNLOAD_PROCESS_NOTIFICATION object:nil];
     
+    
+}
+
+-(void)refreshNew
+{
+    
+}
+
+-(void)loadMore
+{
     
 }
 
@@ -261,10 +271,10 @@
     }
 }
 
--(void)refreshNew
-{
-    [self loadMore];
-}
+//-(void)refreshNew
+//{
+//    [self loadMore];
+//}
 
 -(void)videoPreviewShouldPlayVideo
 {

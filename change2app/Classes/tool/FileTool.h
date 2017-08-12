@@ -18,6 +18,7 @@
 +(instancetype)sharedInstancetype;
 
 -(void)downloadVideo:(VideoObject*)video;
+-(void)saveVideo:(VideoObject*)video;
 -(BOOL)existDownloadedUrl:(NSString*)url;
 -(void)deleteVideo:(VideoObject*)video;
 

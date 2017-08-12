@@ -171,6 +171,14 @@ static FileTool* fileToolInstance;
     [self downloadFile:url];
 }
 
+-(void)saveVideo:(VideoObject *)video
+{
+    NSString* url=video.url;
+    NSString* downloadedUrl=[self filePathWithDownloadedUrl:url];
+//    NSURL* filePath=[NSURL fileURLWithPath:downloadedUrl];
+    UISaveVideoAtPathToSavedPhotosAlbum(downloadedUrl, nil, nil, nil);
+}
+
 -(void)downloadFile:(NSString*)url
 {
     BOOL isDownLoaded=[self existDownloadedUrl:url];

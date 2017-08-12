@@ -7,6 +7,10 @@
 //
 
 #import "HttpTool.h"
+#import "ApiTool.h"
+
+#define xSiginatureVideos @"F0q61aB6GG6ZkcAN5/VI//wVjTPlNanQ6QmDWrU8FRU="
+#define xSiginatureSearch @"BWza7nTl1CrRV2eKaZLOs5NXZZY4n+3NzebRZXBclgg="
 
 @implementation HttpTool
 
@@ -17,7 +21,7 @@
     manager.requestSerializer = [AFJSONRequestSerializer serializer];
     manager.requestSerializer.timeoutInterval = 18;
     [manager.requestSerializer setValue:@"application/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-    [manager.requestSerializer setValue:@"F0q61aB6GG6ZkcAN5/VI//wVjTPlNanQ6QmDWrU8FRU=" forHTTPHeaderField:@"X-Signature"];
+//    [manager.requestSerializer setValue:@"F0q61aB6GG6ZkcAN5/VI//wVjTPlNanQ6QmDWrU8FRU=" forHTTPHeaderField:@"X-Signature"];
     [manager.requestSerializer setValue:@"Token token=" forHTTPHeaderField:@"Authorization"];
     return manager;
 }
@@ -28,6 +32,14 @@
         return;
     }
     AFHTTPSessionManager* manager=[HttpTool manager];
+    
+    if ([url isEqualToString:[ApiTool videoJSON]]) {
+        [manager.requestSerializer setValue:xSiginatureVideos forHTTPHeaderField:@"X-Signature"];
+    }
+    else if([url isEqualToString:[ApiTool searchJSON]])
+    {
+        [manager.requestSerializer setValue:xSiginatureSearch forHTTPHeaderField:@"X-Signature"];
+    }
     
     [manager GET:url parameters:params progress:^(NSProgress * _Nonnull downloadProgress) {
         

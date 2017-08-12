@@ -137,6 +137,49 @@
     }
 }
 
+- (nullable NSArray<UITableViewRowAction *> *)tableView:(UITableView *)tableView editActionsForRowAtIndexPath:(NSIndexPath *)indexPath NS_AVAILABLE_IOS(8_0)
+{
+    VideoObject* vi=[_dataSource objectAtIndex:indexPath.row];
+    BOOL downloaded=[[FileTool sharedInstancetype]existDownloadedUrl:vi.url];
+    
+    UITableViewRowAction* savve=[UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"保存至相册" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [[FileTool sharedInstancetype]saveVideo:vi];
+//        [tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+        tableView.editing=NO;
+        UIAlertView *alertView = [[UIAlertView alloc]initWithTitle:@"已保存" message:[NSString stringWithFormat:@"已保存\"%@\"",vi.name] delegate:nil cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+        [alertView show];
+        
+    }];
+    savve.backgroundColor=[UIColor orangeColor];
+    
+    UITableViewRowAction* delet=[UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"删除" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+        [_dataSource removeObjectAtIndex:indexPath.row];
+        [[FileTool sharedInstancetype]deleteVideo:vi];
+        NSMutableArray* newVideos=[NSMutableArray array];
+        for (VideoObject* vb in _dataSource) {
+            [newVideos addObject:vb.dictionary];
+        }
+        NSDictionary* newCache=[NSDictionary dictionaryWithObject:newVideos forKey:@"videos"];
+        [CacheTool saveCacheWithDictionary:newCache forKey:DOWNLOAD_VIDEO_KEY];
+        [tableView deleteRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    }];
+    delet.backgroundColor=[UIColor redColor];
+    
+//    UITableViewRowAction* test=[UITableViewRowAction rowActionWithStyle:UITableViewRowActionStyleDefault title:@"yrdy" handler:^(UITableViewRowAction * _Nonnull action, NSIndexPath * _Nonnull indexPath) {
+//        
+//    }];
+//    test.backgroundColor=[UIColor greenColor];
+    
+    NSMutableArray* array=[NSMutableArray array];
+    [array addObject:delet];
+//    [array addObject:test];
+    if(downloaded)
+    {
+        [array addObject:savve];
+    }
+    return array;
+}
+
 -(void)downloadProgressNotification:(NSNotification*)notification
 {
     NSDictionary* user=notification.userInfo;

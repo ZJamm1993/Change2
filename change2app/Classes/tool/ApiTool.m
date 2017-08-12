@@ -43,7 +43,7 @@
 
 +(NSString*)searchJSON
 {
-    return [NSString stringWithFormat:@"%@/videos/search.json",[ApiTool main]];
+    return [NSString stringWithFormat:@"%@/videos/search",[ApiTool main]];
 }
 
 @end
