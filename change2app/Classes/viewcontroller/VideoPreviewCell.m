@@ -94,7 +94,7 @@
         
         [imageView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.left.right.top.equalTo(self.contentView);
-            make.height.equalTo(@(320));
+            make.height.equalTo(@(self.contentView.frame.size.width*0.5));
         }];
         
         [tintView mas_makeConstraints:^(MASConstraintMaker *make) {

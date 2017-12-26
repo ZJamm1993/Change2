@@ -17,7 +17,7 @@
 -(void)viewDidLoad
 {
     [super viewDidLoad];
-//    self.title=@"Change";
+    self.title=@"Changer";
     
     UIBarButtonItem* sea=[[UIBarButtonItem alloc]initWithBarButtonSystemItem:UIBarButtonSystemItemSearch target:self action:@selector(goSearch)];
     self.navigationItem.rightBarButtonItem=sea;
