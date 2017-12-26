@@ -61,7 +61,7 @@
     NSArray* videos=[cache valueForKey:@"videos"];
     [_dataSource removeAllObjects];
     for (NSDictionary* vid in videos) {
-        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
+        VideoObject* vo=[VideoObject objectWithDictionary:vid];//[[VideoObject alloc]initWithDictionary:vid];
         DownLoadProgress* pro=[[DownLoadProgress alloc]init];
         pro.finished=NO;
         pro.totalData=1;

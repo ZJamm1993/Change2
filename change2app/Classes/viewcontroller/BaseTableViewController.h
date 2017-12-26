@@ -13,7 +13,7 @@
 #import "VideoObject.h"
 #import "BaseCell.h"
 
-@interface BaseTableViewController : UIViewController<UITableViewDataSource,UITableViewDelegate>
+@interface BaseTableViewController : UITableViewController
 
 @property (nonatomic,strong) NSString* url;
 @property (nonatomic,assign) NSInteger page;
@@ -21,8 +21,8 @@
 @property (nonatomic,strong) NSMutableDictionary* params;
 @property (nonatomic,assign) BOOL usingPage;
 @property (nonatomic,strong) NSMutableArray* dataSource;
-@property (nonatomic,strong) UITableView* tableView;
-@property (nonatomic,strong) UIRefreshControl* refreshControl;
+//@property (nonatomic,strong) UITableView* tableView;
+//@property (nonatomic,strong) UIRefreshControl* refreshControl;
 @property (nonatomic,strong) NSString* cacheKey;
 
 -(void)refreshNew;

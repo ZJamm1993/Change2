@@ -23,7 +23,7 @@
     NSArray* va=[ca valueForKey:@"videos"];
     NSMutableArray* videos=[NSMutableArray arrayWithArray:va];
     for (NSDictionary* vd in va) {
-        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vd];
+        VideoObject* vo=[VideoObject objectWithDictionary:vd];//[[VideoObject alloc]initWithDictionary:vd];
         if (vo.id_==video.id_) {
             [videos removeObject:vd];
         }
@@ -52,7 +52,7 @@
     NSDictionary* ca=[CollectionTool collectionVideos];
     NSArray* videos=[ca valueForKey:@"videos"];
     for (NSDictionary* vd in videos) {
-        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vd];
+        VideoObject* vo=[VideoObject objectWithDictionary:vd];//[[VideoObject alloc]initWithDictionary:vd];
         if (vo.id_==video.id_) {
             return YES;
         }

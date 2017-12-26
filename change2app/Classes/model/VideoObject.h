@@ -14,7 +14,9 @@
 
 @interface VideoObject : NSObject
 
--(instancetype)initWithDictionary:(NSDictionary*)dictionary;
+//-(instancetype)initWithDictionary:(NSDictionary*)dictionary;
+
++(instancetype)objectWithDictionary:(NSDictionary*)dictionary;
 
 @property NSDictionary* dictionary;
 

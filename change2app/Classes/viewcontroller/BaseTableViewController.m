@@ -46,19 +46,19 @@
     _params=[NSMutableDictionary dictionary];
     _dataSource=[NSMutableArray array];
     
-    _tableView=[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
-    _tableView.rowHeight=[[UIScreen mainScreen]bounds].size.width*0.6;
-    _tableView.dataSource=self;
-    _tableView.delegate=self;
-    _tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
-    [self.view addSubview:_tableView];
-    [_tableView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.left.right.top.bottom.equalTo(self.view);
-    }];
+//    self.tableView=[[UITableView alloc]initWithFrame:CGRectZero style:UITableViewStylePlain];
+    self.tableView.rowHeight=[[UIScreen mainScreen]bounds].size.width*0.5;
+//    self.tableView.dataSource=self;
+//    self.tableView.delegate=self;
+    self.tableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+//    [self.view addSubview:self.tableView];
+//    [self.tableView mas_makeConstraints:^(MASConstraintMaker *make) {
+//        make.left.right.top.bottom.equalTo(self.view);
+//    }];
     
-    _refreshControl=[[UIRefreshControl alloc]init];
-    [_refreshControl addTarget:self action:@selector(refreshNew) forControlEvents:UIControlEventValueChanged];
-    [_tableView addSubview:_refreshControl];
+    self.refreshControl=[[UIRefreshControl alloc]init];
+    [self.refreshControl addTarget:self action:@selector(refreshNew) forControlEvents:UIControlEventValueChanged];
+    [self.tableView addSubview:self.refreshControl];
 }
 
 -(void)viewWillAppear:(BOOL)animated
@@ -90,14 +90,14 @@
     _page=1;
     [self didRefreshWithDictionary:responseObject];
     [self saveCacheWithDictionary:responseObject];
-    [_tableView reloadData];
-    [_refreshControl endRefreshing];
+    [self.tableView reloadData];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)refreshFailBlockWithError:(NSError*)error
 {
     //        NSLog(@"%@",error.description);
-    [_refreshControl endRefreshing];
+    [self.refreshControl endRefreshing];
 }
 
 -(void)loadMore
@@ -123,7 +123,7 @@
     if (newCount>oldCount) {
 //        NSLog(@"loaded page: %ld",(long)_page);
         _page++;
-        [_tableView reloadData];
+        [self.tableView reloadData];
     }
 }
 
@@ -147,7 +147,7 @@
 {
     NSArray* videos=[dictionary valueForKeyPath:@"data.videos"];
     for (NSDictionary* vid in videos) {
-        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
+        VideoObject* vo=[VideoObject objectWithDictionary:vid];//[[VideoObject alloc]initWithDictionary:vid];
         if (vo) {
             [_dataSource addObject:vo];
         }

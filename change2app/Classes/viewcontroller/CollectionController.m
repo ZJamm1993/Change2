@@ -51,7 +51,7 @@
     NSArray* videos=[cache valueForKey:@"videos"];
     [_dataSource removeAllObjects];
     for (NSDictionary* vid in videos) {
-        VideoObject* vo=[[VideoObject alloc]initWithDictionary:vid];
+        VideoObject* vo=[VideoObject objectWithDictionary:vid];//[[VideoObject alloc]initWithDictionary:vid];
         [_dataSource addObject:vo];
     }
     if (_dataSource.count>0) {
