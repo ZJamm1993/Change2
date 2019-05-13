@@ -24,7 +24,7 @@
     NSMutableArray* videos=[NSMutableArray arrayWithArray:va];
     for (NSDictionary* vd in va) {
         VideoObject* vo=[VideoObject objectWithDictionary:vd];//[[VideoObject alloc]initWithDictionary:vd];
-        if (vo.id_==video.id_) {
+        if (vo.id==video.id) {
             [videos removeObject:vd];
         }
     }
@@ -53,7 +53,7 @@
     NSArray* videos=[ca valueForKey:@"videos"];
     for (NSDictionary* vd in videos) {
         VideoObject* vo=[VideoObject objectWithDictionary:vd];//[[VideoObject alloc]initWithDictionary:vd];
-        if (vo.id_==video.id_) {
+        if (vo.id==video.id) {
             return YES;
         }
     }

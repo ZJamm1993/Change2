@@ -157,7 +157,7 @@ static FileTool* fileToolInstance;
     BOOL hasCache=NO;
     for (NSDictionary* vd in videos) {
         VideoObject* vo=[VideoObject objectWithDictionary:vd];//[[VideoObject alloc]initWithDictionary:vd];
-        if (vo.id_==video.id_) {
+        if (vo.id==video.id) {
             hasCache=YES;
         }
     }

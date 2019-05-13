@@ -20,7 +20,7 @@
 
 @property NSDictionary* dictionary;
 
-@property NSInteger id_;
+@property NSInteger id;
 @property NSInteger channel_id;
 @property NSInteger category_id;
 @property NSString* name;

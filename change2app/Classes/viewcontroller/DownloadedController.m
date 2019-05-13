@@ -192,7 +192,7 @@
             for (UITableViewCell* cell in showingCells) {
                 if ([cell isKindOfClass:[BaseCell class]]) {
                     BaseCell* bc=(BaseCell*)cell;
-                    if (bc.video.id_==video.id_) {
+                    if (bc.video.id==video.id) {
                         bc.video=video;
                     }
                 }
